@@ -22,7 +22,6 @@ public class AnimatorHandler : MonoBehaviour
     /// <param name="animationType"></param>
     public void SetAnimation(AnimationType animationType = AnimationType.None)
     {
-        return;
         if (animationType == AnimationType.Walk)
             animator.SetBool("walk", true);
         if (animationType == AnimationType.Idle)
