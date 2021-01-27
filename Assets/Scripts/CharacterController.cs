@@ -55,7 +55,9 @@ public class CharacterController : MonoBehaviour
                 //move the transform
                 transform.position += movementDirection * player.MovementSpeed * Time.deltaTime;
                 //look in the moving direction
-                transform.forward = Vector3.Lerp(transform.forward, movementDirection, player.RotationSpeed * Time.deltaTime);
+                Quaternion lookDir = Quaternion.LookRotation(movementDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookDir, player.RotationSpeed * Time.deltaTime);
+                //transform.forward = Vector3.Lerp(transform.forward, movementDirection, player.RotationSpeed * Time.deltaTime);
             }
             else
             {
