@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public delegate void OnTogglePauseUI(bool show);
+﻿public delegate void OnTogglePauseUI(bool show);
 public delegate void OnTryInterruptPause();
 public delegate void OnDestroyInteractable(IInteractable interactable);
 public delegate void OnLongInteractionBegin();
@@ -10,10 +6,10 @@ public delegate void OnLongInteractionEnd(IInteractable interactable);
 public delegate void OnShowInteractionHint(IInteractable interactable);
 public delegate void OnRefreshInteractionHint(IInteractable interactable);
 public delegate void OnHideInteractionHint();
+public delegate void OnAddInventoryItem(Item item, int quantity);
 
 public class GameEventSystem
 {
-
     public static event OnTogglePauseUI TogglePauseUIEvent;
     public static event OnTryInterruptPause TryInterruptPauseEvent;
 
@@ -23,6 +19,8 @@ public class GameEventSystem
     public static event OnShowInteractionHint ShowInteractionHintEvent;
     public static event OnRefreshInteractionHint RefreshInteractionHintEvent;
     public static event OnHideInteractionHint HideInteractionHintEvent;
+
+    public static event OnAddInventoryItem AddInventoryItemEvent;
 
     /// <summary>
     /// You should call this when you want the interaction hint to appear.
@@ -91,5 +89,14 @@ public class GameEventSystem
     public static void TryInterruptPause()
     {
         TryInterruptPauseEvent.Invoke();
+    }
+
+    /// <summary>
+    /// You should call this whenever the player picks an item.
+    /// </summary>
+    /// <param name="item"></param>
+    public static void AddInventoryItem(Item item, int quantity)
+    {
+        AddInventoryItemEvent.Invoke(item, quantity);
     }
 }

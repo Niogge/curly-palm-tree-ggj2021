@@ -1,17 +1,10 @@
 ﻿using UnityEngine;
 
-public enum InteractableType { Shop, LightPost, LightGenerator, Chest, AssemblyDoor }
+public enum InteractableType { Pickable }
 public enum InteractionType { Normal, Special }
 
 public interface IInteractable
 {
-    /// <summary>
-    /// <para>This is the index of the interactable inside the worldInteractables Dictionary of WorlInteractablesHandler.</para>
-    /// <para>It is automatically assigned when all the world interactables are loaded when OnLevelWasLoaded is called.</para>
-    /// <para>This is also used to send or receive an interactable through the network.</para>
-    /// </summary>
-    int CategoryID { get; set; } //<- l'ID dell'oggetto nella sua categoria, stabilito dal WorlInteractablesHandler al caricamento della scena
-
     /// <summary>
     /// <para>This is the text to be displayed when this interaction is possible and the interaction hint is visible.</para>
     /// <para>Being this a property, you can define multiple get results based on your conditions.</para>
@@ -65,32 +58,14 @@ public interface IInteractable
     /// <summary>
     /// <para>This is literally what happens when the normal interaction has been completed on this interactable.</para>
     /// <para>Beware, this is not what happens if the interaction is interrupted. Use InterruptInteraction for that.</para>
-    /// <para>This requires a role because this method could be called over the network, and the end of the interaction may vary from the user's role.</para>
     /// </summary>
-    void CompleteNormalInteraction(Role role); //<- cosa succede quando l'interazione viene fermata/finisce?
+    void CompleteNormalInteraction(); //<- cosa succede quando l'interazione viene fermata/finisce?
 
     /// <summary>
     /// <para>This is literally what happens when the special interaction has been completed on this interactable.</para>
     /// <para>Beware, this is not what happens if the interaction is interrupted. Use InterruptInteraction for that.</para>
-    /// <para>This requires a role because this method could be called over the network, and the end of the interaction may vary from the user's role.</para>
     /// </summary>
-    void CompleteSpecialInteraction(Role role); //<- cosa succede quando l'interazione viene fermata/finisce?
-
-    /// <summary>
-    /// <para>This defines the standard things that happen when a normal interaction is started by anyone on this interactable.</para>
-    /// <para>You can consider it as a constructor method to be called before StartNormalInteraction.</para>
-    /// <para>It decouples the consequences of the interaction from the interactable's changes.</para>
-    /// <para>So if someone else is interacting with this, you only trigger the base, while if you are, you call the base first and the start later.</para>
-    /// </summary>
-    void BaseNormalStartSetup(); //<- cosa accade di base quando l'interazione normale inizia?
-
-    /// <summary>
-    /// <para>This defines the standard things that happen when a special interaction is started by anyone on this interactable.</para>
-    /// <para>You can consider it as a constructor method to be called before StartSpecialInteraction.</para>
-    /// <para>It decouples the consequences of the interaction from the interactable's changes.</para>
-    /// <para>So if someone else is interacting with this, you only trigger the base, while if you are, you call the base first and the start later.</para>
-    /// </summary>
-    void BaseSpecialStartSetup(); //<- cosa accade di base quando l'interazione speciale inizia?
+    void CompleteSpecialInteraction(); //<- cosa succede quando l'interazione viene fermata/finisce?
 
     /// <summary>
     /// <para>This defines what happens if an interaction is interrupted on this interactable.</para>
