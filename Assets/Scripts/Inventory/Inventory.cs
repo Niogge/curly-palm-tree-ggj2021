@@ -12,6 +12,11 @@ public class Inventory : MonoBehaviour
         itemSlots = new List<ItemSlot>();
         GameEventSystem.AddInventoryItemEvent += AddItem;
     }
+    private void Start()
+    {
+        GameEventSystem.ChangeInventoryMaxSlots(MaxSlots);
+
+    }
 
     private void AddItem(Item item, int quantity)
     {
@@ -19,7 +24,9 @@ public class Inventory : MonoBehaviour
         {
             if (itemSlots[i].ItemName.Equals(item.Name)) //if there is a slot of the given item type
             {
-                itemSlots[i].Add(quantity); //add the given quantity to this slot
+                if (itemSlots[i].Add(quantity))//add the given quantity to this slot
+                    GameEventSystem.ChangeInventorySlotQuantity(item, itemSlots[i].Quantity);
+
                 return;
             }
         }
@@ -28,19 +35,21 @@ public class Inventory : MonoBehaviour
         if(itemSlots.Count < MaxSlots)
         {
             ItemSlot slot = new ItemSlot(item.Name, item.Quantity, item.CanStack, item.MaxQuantity);
+            itemSlots.Add(slot);
+            GameEventSystem.AddInventorySlot(item);
         }
-
-        Debug.Log(item.Name + " Added in inventory!");
     }
-
     private void RemoveItem(Item item, int quantity)
     {
         for (int i = 0; i < itemSlots.Count; i++) //search all the slots
         {
             if (itemSlots[i].ItemName.Equals(item.Name)) //if there is a slot of the given item type
             {
-                if (!itemSlots[i].Remove(quantity)) //if after the removal there is no more quantity
+                if (!itemSlots[i].Remove(quantity))//if after the removal there is no more quantity
+                {
                     itemSlots.RemoveAt(i); //remove the slot
+                    GameEventSystem.RemoveInventorySlot(item);
+                }
             }
         }
     }

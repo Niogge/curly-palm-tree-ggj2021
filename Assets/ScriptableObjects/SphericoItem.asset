@@ -19,4 +19,4 @@ MonoBehaviour:
   MinSpawnQuantity: 5
   MaxSpawnQuantity: 78
   Prefab: {fileID: 0}
-  UIRepresentation: {fileID: 0}
+  UIRepresentation: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct ItemSlot
+public class ItemSlot
 {
     public string ItemName;
     public int Quantity;
@@ -21,14 +21,17 @@ public struct ItemSlot
     /// Adds the given quantity to the stack, if this slot can stack.
     /// </summary>
     /// <param name="quantity"></param>
-    public void Add(int quantity)
+    public bool Add(int quantity)
     {
         if(CanStack && Quantity < MaxStack)
         {
             Quantity += quantity;
             if (Quantity > MaxStack)
                 Quantity = MaxStack;
+
+            return true;
         }
+        return false;
     }
 
     /// <summary>

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: fabrizio
   Description: lo ha corto
-  CanStack: 1
-  MaxStack: 100
-  MinSpawnQuantity: 7
-  MaxSpawnQuantity: 64
+  CanStack: 0
+  MaxStack: 1
+  MinSpawnQuantity: 1
+  MaxSpawnQuantity: 1
   Prefab: {fileID: 0}
-  UIRepresentation: {fileID: 0}
+  UIRepresentation: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

@@ -7,6 +7,10 @@ public delegate void OnShowInteractionHint(IInteractable interactable);
 public delegate void OnRefreshInteractionHint(IInteractable interactable);
 public delegate void OnHideInteractionHint();
 public delegate void OnAddInventoryItem(Item item, int quantity);
+public delegate void OnChangeInventoryMaxSlots(int slots);
+public delegate void OnAddInventorySlot(Item item);
+public delegate void OnRemoveInventorySlot(Item item);
+public delegate void OnChangeInventorySlotQuantity(Item item, int quantity);
 
 public class GameEventSystem
 {
@@ -20,7 +24,12 @@ public class GameEventSystem
     public static event OnRefreshInteractionHint RefreshInteractionHintEvent;
     public static event OnHideInteractionHint HideInteractionHintEvent;
 
+    //inventory
     public static event OnAddInventoryItem AddInventoryItemEvent;
+    public static event OnChangeInventoryMaxSlots ChangeInventoryMaxSlotsEvent;
+    public static event OnAddInventorySlot AddInventorySlotEvent;
+    public static event OnRemoveInventorySlot RemoveInventorySlotEvent;
+    public static event OnChangeInventorySlotQuantity ChangeInventorySlotQuantityEvent;
 
     /// <summary>
     /// You should call this when you want the interaction hint to appear.
@@ -98,5 +107,25 @@ public class GameEventSystem
     public static void AddInventoryItem(Item item, int quantity)
     {
         AddInventoryItemEvent.Invoke(item, quantity);
+    }
+
+    public static void ChangeInventoryMaxSlots(int slots)
+    {
+        ChangeInventoryMaxSlotsEvent.Invoke(slots);
+    }
+
+    public static void AddInventorySlot(Item item)
+    {
+        AddInventorySlotEvent.Invoke(item);
+    }
+
+    public static void RemoveInventorySlot(Item item)
+    {
+        RemoveInventorySlotEvent.Invoke(item);
+    }
+
+    public static void ChangeInventorySlotQuantity(Item item, int quantity)
+    {
+        ChangeInventorySlotQuantityEvent.Invoke(item, quantity);
     }
 }
