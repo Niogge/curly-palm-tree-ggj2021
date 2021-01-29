@@ -45,7 +45,7 @@ public class CharacterController : MonoBehaviour
             //find average velocity vector on x/0/z plane using camera orientation and movement values
             Vector3 movementDirection = (cameraTarget.Camera.right * inputHandler.movementHorizontal) +
                 (cameraTarget.CameraForward * -inputHandler.movementVertical);
-            Debug.Log(movementDirection);
+            //Debug.Log(movementDirection);
 
             //if moving
             if (movementDirection != Vector3.zero)

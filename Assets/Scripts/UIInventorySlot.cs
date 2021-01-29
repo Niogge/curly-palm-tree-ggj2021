@@ -20,6 +20,7 @@ public class UIInventorySlot : MonoBehaviour
     {
         IsEmpty = true;
     }
+
     public void PopulateSlot(Item item)
     {
         Image.sprite = item.UIRepresentation;
@@ -27,6 +28,7 @@ public class UIInventorySlot : MonoBehaviour
         Quantity.text = item.Quantity.ToString();
         IsEmpty = false;
     }
+
     public void ClearSlot()
     {
         Image.sprite = null;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum InteractableType { Pickable }
+public enum InteractableType { Pickable, Building }
 public enum InteractionType { Normal, Special }
 
 public interface IInteractable

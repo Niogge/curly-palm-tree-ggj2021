@@ -35,14 +35,31 @@ public class ItemSlot
     }
 
     /// <summary>
-    /// Returns true if there is still quantity available of this object after removal.
-    /// Returns false if quantity is 0.
+    /// Returns the REAL quantity removed. If you ask to remove 20 but you have 2, 2 will be returned.
     /// </summary>
     /// <param name="quantity"></param>
     /// <returns></returns>
-    public bool Remove(int quantity)
+    public int Remove(int quantity)
     {
-        Quantity -= quantity;
-        return quantity > 0;
+        int remaining = Quantity - quantity;
+        if(remaining >= 0)
+        {
+            Quantity -= quantity;
+            return quantity;
+        }
+        else
+        {
+            quantity -= Mathf.Abs(remaining);
+            Quantity -= quantity;
+            return quantity;
+        }
+    }
+
+    public void Clear()
+    {
+        ItemName = "";
+        Quantity = 0;
+        CanStack = false;
+        MaxStack = 0;
     }
 }

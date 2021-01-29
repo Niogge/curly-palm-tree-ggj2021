@@ -6,11 +6,17 @@ public delegate void OnLongInteractionEnd(IInteractable interactable);
 public delegate void OnShowInteractionHint(IInteractable interactable);
 public delegate void OnRefreshInteractionHint(IInteractable interactable);
 public delegate void OnHideInteractionHint();
+
 public delegate void OnAddInventoryItem(Item item, int quantity);
 public delegate void OnChangeInventoryMaxSlots(int slots);
 public delegate void OnAddInventorySlot(Item item);
-public delegate void OnRemoveInventorySlot(Item item);
-public delegate void OnChangeInventorySlotQuantity(Item item, int quantity);
+public delegate void OnRemoveInventorySlot(string itemName);
+public delegate void OnChangeInventorySlotQuantity(string itemName, int quantity);
+
+public delegate void OnActivateBuildingSpot(Building building);
+public delegate void OnToggleBuildingUI(bool activeStatus, Building building);
+public delegate void OnTryGiveMaterialToBuild(string materialName, int quantity);
+public delegate void OnGiveMaterial(int quantity);
 
 public class GameEventSystem
 {
@@ -30,6 +36,32 @@ public class GameEventSystem
     public static event OnAddInventorySlot AddInventorySlotEvent;
     public static event OnRemoveInventorySlot RemoveInventorySlotEvent;
     public static event OnChangeInventorySlotQuantity ChangeInventorySlotQuantityEvent;
+
+    //building
+    public static event OnActivateBuildingSpot ActivateBuildingSpotEvent;
+    public static event OnToggleBuildingUI ToggleBuildingUIEvent;
+    public static event OnTryGiveMaterialToBuild TryGiveMaterialToBuildEvent;
+    public static event OnGiveMaterial GiveMaterialEvent;
+
+    public static void ActivateBuildingSpot(Building building)
+    {
+        ActivateBuildingSpotEvent.Invoke(building);
+    }
+
+    public static void ToggleBuildingUI(bool activeStatus, Building building)
+    {
+        ToggleBuildingUIEvent.Invoke(activeStatus, building);
+    }
+
+    public static void TryGiveMaterialToBuild(string materialName, int quantity)
+    {
+        TryGiveMaterialToBuildEvent.Invoke(materialName, quantity);
+    }
+
+    public static void GiveMaterial(int quantity)
+    {
+        GiveMaterialEvent.Invoke(quantity);
+    }
 
     /// <summary>
     /// You should call this when you want the interaction hint to appear.
@@ -119,13 +151,13 @@ public class GameEventSystem
         AddInventorySlotEvent.Invoke(item);
     }
 
-    public static void RemoveInventorySlot(Item item)
+    public static void RemoveInventorySlot(string itemName)
     {
-        RemoveInventorySlotEvent.Invoke(item);
+        RemoveInventorySlotEvent.Invoke(itemName);
     }
 
-    public static void ChangeInventorySlotQuantity(Item item, int quantity)
+    public static void ChangeInventorySlotQuantity(string itemName, int quantity)
     {
-        ChangeInventorySlotQuantityEvent.Invoke(item, quantity);
+        ChangeInventorySlotQuantityEvent.Invoke(itemName, quantity);
     }
 }

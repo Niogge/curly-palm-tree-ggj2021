@@ -41,24 +41,28 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
-    public void ChangeQuantity(Item item, int quantity)
+    public void ChangeQuantity(string itemName, int quantity)
     {
         for (int i = 0; i < UIInventorySlots.Count; i++)
         {
-            if (item.Name.Equals(UIInventorySlots[i].SlotName))
+            if (itemName.Equals(UIInventorySlots[i].SlotName))
             {
                 UIInventorySlots[i].SetQuantity(quantity);
             }
         }
     }
-    public void RemoveSlot(Item item)
+    public void RemoveSlot(string itemName)
     {
         for (int i = 0; i < UIInventorySlots.Count; i++)
         {
-            if(item.Name.Equals(UIInventorySlots[i].SlotName))
+            if(itemName.Equals(UIInventorySlots[i].SlotName))
             {
                 UIInventorySlots[i].ClearSlot();
                 UIInventorySlots[i].transform.SetAsLastSibling();
+                //honz cecio
+                UIInventorySlot slot = UIInventorySlots[i];
+                UIInventorySlots.RemoveAt(i);
+                UIInventorySlots.Add(slot);
                 break;
             }
         }

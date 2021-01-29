@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea2994d00bfe3845905026d3770fa06, type: 3}
-  m_Name: QuadraticoItem
+  m_Name: Stone
   m_EditorClassIdentifier: 
-  Name: fabrizio
-  Description: lo ha corto
-  CanStack: 0
-  MaxStack: 1
-  MinSpawnQuantity: 1
-  MaxSpawnQuantity: 1
+  Name: Stone
+  Description: Stones...
+  CanStack: 1
+  MaxStack: 500
+  MinSpawnQuantity: 50
+  MaxSpawnQuantity: 86
   Prefab: {fileID: 0}
   UIRepresentation: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
