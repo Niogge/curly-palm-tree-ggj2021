@@ -18,6 +18,11 @@ public delegate void OnToggleBuildingUI(bool activeStatus, Building building);
 public delegate void OnTryGiveMaterialToBuild(string materialName, int quantity);
 public delegate void OnGiveMaterial(int quantity);
 
+public delegate void OnToggleCraftingUI(bool activeStatus);
+public delegate void OnAcquireCraftingRecipe(string recipeName);
+public delegate void OnLoadAllRecipes(ref Recipe[] recipes);
+public delegate void OnCraftItem(string itemName, int quantity);
+
 public class GameEventSystem
 {
     public static event OnTogglePauseUI TogglePauseUIEvent;
@@ -43,6 +48,22 @@ public class GameEventSystem
     public static event OnTryGiveMaterialToBuild TryGiveMaterialToBuildEvent;
     public static event OnGiveMaterial GiveMaterialEvent;
 
+    //crafting
+    public static event OnToggleCraftingUI ToggleCraftingUIEvent;
+    public static event OnAcquireCraftingRecipe AcquireCraftingRecipeEvent;
+    public static event OnLoadAllRecipes LoadAllRecipesEvent;
+    public static event OnCraftItem CraftItemEvent;
+
+    public static void CraftItem(string itemName, int quantity)
+    {
+        CraftItemEvent.Invoke(itemName, quantity);
+    }
+
+    public static void LoadAllRecipes(ref Recipe[] recipes)
+    {
+        LoadAllRecipesEvent.Invoke(ref recipes);
+    }
+
     public static void ActivateBuildingSpot(Building building)
     {
         ActivateBuildingSpotEvent.Invoke(building);
@@ -61,6 +82,16 @@ public class GameEventSystem
     public static void GiveMaterial(int quantity)
     {
         GiveMaterialEvent.Invoke(quantity);
+    }
+
+    public static void ToggleCraftingUI(bool activeStatus)
+    {
+        ToggleCraftingUIEvent.Invoke(activeStatus);
+    }
+
+    public static void AcquireCraftingRecipe(string recipeName)
+    {
+        AcquireCraftingRecipeEvent.Invoke(recipeName);
     }
 
     /// <summary>

@@ -42,6 +42,6 @@ public class BuildingPanelBehaviour : MonoBehaviour
 
     public void CloseButtonClick()
     {
-        GameEventSystem.ToggleBuildingUI(false, CurrentBuilding);
+        CurrentBuilding.InterruptInteraction();
     }
 }

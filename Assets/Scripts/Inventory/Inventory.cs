@@ -4,19 +4,45 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int MaxSlots;
-    public List<ItemSlot> itemSlots;
+    public static bool SpaceAvailable { get { return itemSlots.Count < MaxSlots; } }
+    public static int MaxSlots;
+    public static List<ItemSlot> itemSlots;
+
+    public RecipeSO[] RecipesSO; //<- set in inspector and don't use it in game.
+    [HideInInspector] public Recipe[] Recipes;
 
     private void Awake()
     {
         itemSlots = new List<ItemSlot>();
+
+        Recipes = new Recipe[RecipesSO.Length];
+        for (int i = 0; i < RecipesSO.Length; i++)
+        {
+            Recipes[i] = new Recipe(RecipesSO[i]);
+        }
+
         GameEventSystem.AddInventoryItemEvent += AddItem;
         GameEventSystem.TryGiveMaterialToBuildEvent += GiveMaterial;
+        GameEventSystem.AcquireCraftingRecipeEvent += UnlockRecipe;
+        GameEventSystem.CraftItemEvent += CraftItem;
     }
 
     private void Start()
     {
         GameEventSystem.ChangeInventoryMaxSlots(MaxSlots);
+        GameEventSystem.LoadAllRecipes(ref Recipes);
+    }
+
+    private void UnlockRecipe(string recipeName)
+    {
+        for (int i = 0; i < Recipes.Length; i++)
+        {
+            if(Recipes[i].RecipeName.Equals(recipeName))
+            {
+                Recipes[i].Acquired = true;
+                //evento per popuppino che dice "Hai imparato sto caxxo!"
+            }
+        }
     }
 
     private void GiveMaterial(string itemName, int quantity)
@@ -54,7 +80,7 @@ public class Inventory : MonoBehaviour
         }
 
         //here, the slot of this item type doesn't exist, so create the slot type and add the item quantity in it.
-        if (itemSlots.Count < MaxSlots)
+        if (SpaceAvailable)
         {
             ItemSlot slot = new ItemSlot(item.Name, item.Quantity, item.CanStack, item.MaxQuantity);
             itemSlots.Add(slot);
@@ -79,6 +105,36 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void CraftItem(string itemName, int quantity)
+    {
+        for (int i = 0; i < itemSlots.Count; i++) //search all the slots
+        {
+            if (itemSlots[i].ItemName.Equals(itemName)) //if there is a slot of the given item type
+            {
+                itemSlots[i].Remove(quantity);
+                //if after the removal there is no more quantity
+                if (itemSlots[i].Quantity <= 0)
+                {
+                    itemSlots[i].Clear();
+                    itemSlots.RemoveAt(i); //remove the slot
+                    GameEventSystem.RemoveInventorySlot(itemName);
+                    //aggiornare anche la UI
+                }
+                break;
+            }
+        }
+    }
+
+    public static ItemSlot FindSlot(string name)
+    {
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i].ItemName.Equals(name))
+                return itemSlots[i];
+        }
+        return null;
     }
 
     private void Update()

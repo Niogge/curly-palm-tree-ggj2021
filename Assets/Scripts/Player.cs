@@ -10,20 +10,25 @@ public class Player : MonoBehaviour
     //This class should only contain the main player data, not behaviours!
 
     public bool IsPaused; //<- true if the player is in the pause menu
-
-    public string UserName;
-    public Role Role;
-    public FieldOfViewType FoWType;
     public float MovementSpeed;
     public float RotationSpeed;
     public bool IsInteracting;
-
-    //TODO: This stuff should only be on YOUR prefabs, not others.
-    public float LightGeneratorsRepairSpeed;
-    public float LightGeneratorsSabotageSpeed;
+    public bool IsCrafting;
+    public int StartingInventorySlots;
 
     private void Awake()
     {
         GameEventSystem.TogglePauseUIEvent += (bool paused) => IsPaused = paused;
+        GameEventSystem.ToggleCraftingUIEvent += ToggleCraft;
+        Inventory.MaxSlots = StartingInventorySlots;
+    }
+
+    private void ToggleCraft(bool status)
+    {
+        IsCrafting = status;
+        if (!status)
+            GetComponent<InputHandler>().GetPlayerControls().GamePlay.Movement.Enable();
+        else
+            GetComponent<InputHandler>().GetPlayerControls().GamePlay.Movement.Disable();
     }
 }
