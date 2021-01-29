@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8451bf545fe127a4cb62ea699fb1fdad, type: 3}
   m_Name: ArrowsRecipe
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6143540600304899605, guid: 6f9f2a90176a1ef43a884b5b2c7b00ed, type: 3}
+  Prefab: {fileID: 1404299295457920313, guid: b8bdae6efbe8c68408af1ad99684e588, type: 3}
   RecipeName: Arrows
   OutputQuantity: 5
   Acquired: 1
