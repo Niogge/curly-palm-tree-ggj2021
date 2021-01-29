@@ -18,5 +18,5 @@ MonoBehaviour:
   MaxStack: 500
   MinSpawnQuantity: 50
   MaxSpawnQuantity: 86
-  Prefab: {fileID: 0}
-  UIRepresentation: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  Prefab: {fileID: 4897083644563432207, guid: fbfe4e86fe9e10a49b2cc84fb7297d79, type: 3}
+  UIRepresentation: {fileID: 21300000, guid: 52ff6351cbbadbb4088e68cbed4bdd4b, type: 3}

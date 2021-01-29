@@ -23,7 +23,7 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
             if (slot != null)
             {
                 item.GetComponent<CraftingRequirementItemUI>().Quantity.text = slot.Quantity.ToString() + " / " + recipe.Requirements[i].NeededQuantity.ToString();
-                if (slot.Quantity > recipe.Requirements[i].NeededQuantity)
+                if (slot.Quantity >= recipe.Requirements[i].NeededQuantity)
                 {
                     possessedMaterialsCounter++;
                 }
@@ -35,6 +35,8 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
         SelectedRecipe = recipe;
         if (possessedMaterialsCounter == SelectedRecipe.Requirements.Length)
             CraftButton.SetActive(true);
+        else
+            CraftButton.SetActive(false);
     }
 
     public void Clear()

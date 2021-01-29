@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         itemSlots = new List<ItemSlot>();
-
+        MaxSlots = 8;
         Recipes = new Recipe[RecipesSO.Length];
         for (int i = 0; i < RecipesSO.Length; i++)
         {
@@ -25,12 +25,13 @@ public class Inventory : MonoBehaviour
         GameEventSystem.TryGiveMaterialToBuildEvent += GiveMaterial;
         GameEventSystem.AcquireCraftingRecipeEvent += UnlockRecipe;
         GameEventSystem.CraftItemEvent += CraftItem;
+        GameEventSystem.DropInventoryItemEvent += DropItem;
     }
 
     private void Start()
     {
-        GameEventSystem.ChangeInventoryMaxSlots(MaxSlots);
         GameEventSystem.LoadAllRecipes(ref Recipes);
+        GameEventSystem.ChangeInventoryMaxSlots(MaxSlots);
     }
 
     private void UnlockRecipe(string recipeName)
@@ -82,7 +83,7 @@ public class Inventory : MonoBehaviour
         //here, the slot of this item type doesn't exist, so create the slot type and add the item quantity in it.
         if (SpaceAvailable)
         {
-            ItemSlot slot = new ItemSlot(item.Name, item.Quantity, item.CanStack, item.MaxQuantity);
+            ItemSlot slot = new ItemSlot(item.Name, item.Quantity, item.CanStack, item.MaxQuantity, item.Prefab);
             itemSlots.Add(slot);
             GameEventSystem.AddInventorySlot(item);
         }
@@ -107,6 +108,35 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void DropItem(string itemName, int quantity)
+    {
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i].ItemName.Equals(itemName))
+            {
+                //instantiate the prefab first for calculate quantity items
+                GameObject go = Instantiate(itemSlots[i].Prefab);
+
+                Vector3 rndPos = new Vector3(Random.Range(1, 3), 0, Random.Range(1, 3));
+                go.transform.position = transform.position + rndPos;
+
+                Pickable pk = go.GetComponent<Pickable>();
+                pk.CreateItem();
+                pk.Item.Quantity = itemSlots[i].Quantity - quantity > 0 ? quantity : itemSlots[i].Quantity;
+
+                itemSlots[i].Remove(quantity);
+                if (itemSlots[i].Quantity <= 0)
+                {
+                    itemSlots[i].Clear();
+                    itemSlots.RemoveAt(i);
+                    GameEventSystem.RemoveInventorySlot(itemName);
+                    break;
+                }
+
+                GameEventSystem.ChangeInventorySlotQuantity(itemName, itemSlots[i].Quantity);
+            }
+        }
+    }
     private void CraftItem(string itemName, int quantity)
     {
         for (int i = 0; i < itemSlots.Count; i++) //search all the slots

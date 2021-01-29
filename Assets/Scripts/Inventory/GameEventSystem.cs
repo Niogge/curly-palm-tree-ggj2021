@@ -12,6 +12,7 @@ public delegate void OnChangeInventoryMaxSlots(int slots);
 public delegate void OnAddInventorySlot(Item item);
 public delegate void OnRemoveInventorySlot(string itemName);
 public delegate void OnChangeInventorySlotQuantity(string itemName, int quantity);
+public delegate void OnDropInventoryItem(string itemName, int quantity);
 
 public delegate void OnActivateBuildingSpot(Building building);
 public delegate void OnToggleBuildingUI(bool activeStatus, Building building);
@@ -41,6 +42,8 @@ public class GameEventSystem
     public static event OnAddInventorySlot AddInventorySlotEvent;
     public static event OnRemoveInventorySlot RemoveInventorySlotEvent;
     public static event OnChangeInventorySlotQuantity ChangeInventorySlotQuantityEvent;
+    public static event OnDropInventoryItem DropInventoryItemEvent;
+
 
     //building
     public static event OnActivateBuildingSpot ActivateBuildingSpotEvent;
@@ -190,5 +193,9 @@ public class GameEventSystem
     public static void ChangeInventorySlotQuantity(string itemName, int quantity)
     {
         ChangeInventorySlotQuantityEvent.Invoke(itemName, quantity);
+    }
+    public static void DropInventoryItem(string itemName, int quantity)
+    {
+        DropInventoryItemEvent(itemName, quantity);
     }
 }

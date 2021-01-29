@@ -17,9 +17,15 @@ public class BezierInstantiator : MonoBehaviour
     [Range(0, 360)] public float Z_rot;
     public Vector3 Starting_rot;
     [Space]
+    [Header("Random Scale")]
+    [Range(0, 10)] public float X_scale;
+    [Range(0, 10)] public float Y_scale;
+    [Range(0, 10)] public float Z_scale;
+    public Vector3 Starting_scale;
+    [Space]
     [Header("Instantiate!")]
-    public bool Instantiate;
-    public bool Destroy;
+    public bool Instantiate_objs;
+    public bool Destroy_objs;
     // Start is called before the first frame update
 
     void Start()
@@ -50,17 +56,27 @@ public class BezierInstantiator : MonoBehaviour
             go = Instantiate(PrefabList[Random.Range(0, PrefabList.Count)], Parent);
             //go.transform.position = BezierCurve(currentT);
             go.transform.rotation = Quaternion.Euler(GetRot());
+            go.transform.localScale = GetScale();
             go.transform.position = BezierCurve(currentT);
+            go.isStatic = true;
             currentT += increment;
         }
+    }
+    Vector3 GetScale()
+    {
+        Vector3 newScale = new Vector3(0, 0, 0);
+        newScale.x = Random.Range(0, X_scale) + Starting_scale.x;
+        newScale.y = Random.Range(0, Y_scale) + Starting_scale.y;
+        newScale.z = Random.Range(0, Z_scale) + Starting_scale.z;
+        return newScale;
     }
     Vector3 GetRot()
     {
         Vector3 newRot = new Vector3(0, 0, 0);
 
-        newRot.x = Random.Range(0, X_rot)+Starting_rot.x;
-        newRot.y = Random.Range(0, Y_rot)+Starting_rot.y;
-        newRot.z = Random.Range(0, Z_rot)+Starting_rot.z;
+        newRot.x = Random.Range(0, X_rot) + Starting_rot.x;
+        newRot.y = Random.Range(0, Y_rot) + Starting_rot.y;
+        newRot.z = Random.Range(0, Z_rot) + Starting_rot.z;
 
         return newRot;
     }
@@ -72,14 +88,14 @@ public class BezierInstantiator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Instantiate)
+        if (Instantiate_objs)
         {
-            Instantiate = false;
+            Instantiate_objs = false;
             InstantiatePointsFixed();
         }
-        if (Destroy)
+        if (Destroy_objs)
         {
-            Destroy = false;
+            Destroy_objs = false;
             Clear();
         }
     }
