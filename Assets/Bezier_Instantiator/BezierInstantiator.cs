@@ -12,9 +12,10 @@ public class BezierInstantiator : MonoBehaviour
 
     [Space]
     [Header("Random Rotation")]
-    public bool X_rot;
-    public bool Y_rot;
-    public bool Z_rot;
+    [Range(0, 360)] public float X_rot;
+    [Range(0, 360)] public float Y_rot;
+    [Range(0, 360)] public float Z_rot;
+    public Vector3 Starting_rot;
     [Space]
     [Header("Instantiate!")]
     public bool Instantiate;
@@ -56,18 +57,11 @@ public class BezierInstantiator : MonoBehaviour
     Vector3 GetRot()
     {
         Vector3 newRot = new Vector3(0, 0, 0);
-        if (X_rot)
-        {
-            newRot.x = Random.Range(0, 360);
-        }
-        if (Y_rot)
-        {
-            newRot.y = Random.Range(0, 360);
-        }
-        if (Z_rot)
-        {
-            newRot.z = Random.Range(0, 360);
-        }
+
+        newRot.x = Random.Range(0, X_rot)+Starting_rot.x;
+        newRot.y = Random.Range(0, Y_rot)+Starting_rot.y;
+        newRot.z = Random.Range(0, Z_rot)+Starting_rot.z;
+
         return newRot;
     }
     void Clear()
@@ -89,22 +83,27 @@ public class BezierInstantiator : MonoBehaviour
             Clear();
         }
     }
-    float Factorial(int n){
+    float Factorial(int n)
+    {
         int nFact = 1;
-        for(int i =0;i<n;i++){
-            nFact = nFact * (n-i);
+        for (int i = 0; i < n; i++)
+        {
+            nFact = nFact * (n - i);
         }
         return nFact;
     }
-    float Binomial(int n, int k){
-        return Factorial(n)/(Factorial(k)*Factorial(n-k));
+    float Binomial(int n, int k)
+    {
+        return Factorial(n) / (Factorial(k) * Factorial(n - k));
     }
 
-    public Vector3 BezierCurve(float t){
-        Vector3 BGivenT =Vector3.zero;
-        int n =BezierPoints.Count;
-        for(int i=0;i<n;i++){
-            BGivenT += Binomial(n-1,i)*Mathf.Pow((1-t),n-1-i)*Mathf.Pow(t,i)*BezierPoints[i].position;
+    public Vector3 BezierCurve(float t)
+    {
+        Vector3 BGivenT = Vector3.zero;
+        int n = BezierPoints.Count;
+        for (int i = 0; i < n; i++)
+        {
+            BGivenT += Binomial(n - 1, i) * Mathf.Pow((1 - t), n - 1 - i) * Mathf.Pow(t, i) * BezierPoints[i].position;
         }
         return BGivenT;
     }
