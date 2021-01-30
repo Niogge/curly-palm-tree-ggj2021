@@ -26,7 +26,6 @@ public class LifeManager : MonoBehaviour
 
     public void AddDamage(int damage)
     {
-        Debug.Log("FAMALE CAZZO! : " +  owner.ToString());
         AcctuallyLife -= damage;
 
         if (AcctuallyLife <= 0)
