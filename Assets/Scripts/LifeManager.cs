@@ -21,12 +21,20 @@ public class LifeManager : MonoBehaviour
     private void Start()
     {
         AcctuallyLife = Life;
-        LifeBar.maxValue = Life;
+        if (LifeBar != null)
+        {
+            LifeBar.maxValue = Life;
+            LifeBar.value = Life;
+        }
     }
     private void OnEnable()
     {
         AcctuallyLife = Life;
-        LifeBar.maxValue = Life;
+        if (LifeBar != null)
+        {
+            LifeBar.maxValue = Life;
+            LifeBar.value = Life;
+        }
     }
 
     public void AddDamage(int damage)
