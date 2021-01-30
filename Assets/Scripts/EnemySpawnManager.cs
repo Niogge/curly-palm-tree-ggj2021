@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject VoodoDude;
-    public Transform Target;
     public float rndSpawnRange = 2;
+    public float DistForActiveSpawn;
+    [HideInInspector]
+    public Transform Target;
 
     List<GameObject> enemies;
 
@@ -29,11 +31,14 @@ public class EnemySpawnManager : MonoBehaviour
             go.SetActive(false);
             enemies.Add(go);
         }
+
+        Target = GameObject.Find("Player").transform;
     }
 
     void Update()
     {
-        SetState();
+        if (Vector3.Distance(Target.position, transform.position) <= DistForActiveSpawn)
+            SetState();
     }
 
     void SetState()
