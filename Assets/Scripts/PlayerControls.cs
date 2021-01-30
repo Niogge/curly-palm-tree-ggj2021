@@ -80,7 +80,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""23e4ef09-8b7b-4a6b-a9b9-63b7df1ac527"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(pressPoint=0.1,behavior=2)""
+                    ""interactions"": ""Hold,Press(behavior=2)""
                 },
                 {
                     ""name"": ""Dodge"",

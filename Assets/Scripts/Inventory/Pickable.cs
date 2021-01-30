@@ -36,9 +36,9 @@ public class Pickable : MonoBehaviour, IInteractable
     //IInteractable-----
     public void StartNormalInteraction()
     {
-        GameEventSystem.AddInventoryItem(Item, Item.Quantity);
-        GameEventSystem.DestroyInteractable(this);
-        Destroy(gameObject); //<- se usiamo il pooling agire qui al posto di Destroy!
+        GameEventSystem.AddInventoryItem(this, Item.Quantity);
+        //GameEventSystem.DestroyInteractable(this);
+        //Destroy(gameObject); //<- se usiamo il pooling agire qui al posto di Destroy!
     }
 
     public Vector3 GetPosition()

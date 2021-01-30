@@ -8,13 +8,15 @@ public class ItemSlot
     public int Quantity;
     public bool CanStack;
     public int MaxStack;
+    public GameObject Prefab;
 
-    public ItemSlot(string itemName, int quantity, bool canStack, int maxStack)
+    public ItemSlot(string itemName, int quantity, bool canStack, int maxStack, GameObject prefab)
     {
         ItemName = itemName;
         Quantity = quantity;
         CanStack = canStack;
         MaxStack = maxStack;
+        Prefab = prefab;
     }
 
     /// <summary>
@@ -61,5 +63,6 @@ public class ItemSlot
         Quantity = 0;
         CanStack = false;
         MaxStack = 0;
+        Prefab = null;
     }
 }

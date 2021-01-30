@@ -22,8 +22,7 @@ public class InputHandler : MonoBehaviour
     public bool pauseButtonPressed { get { return playerControls.GamePlay.Pause.triggered; } }
 
     public ControlScheme currentControlScheme { get; private set; }
-
-    //public bool attackButtonPressed { get; private set; }
+    public bool attackButtonPressed { get { return playerControls.GamePlay.Attack.triggered; } }
     //public bool coverButtonPressed { get; private set; }
     //public bool dodgeButtonPressed { get { return playerControls.GamePlay.Dodge.triggered; } }
     //public bool jumpButtonPressed { get { return playerControls.GamePlay.Jump.triggered; } }

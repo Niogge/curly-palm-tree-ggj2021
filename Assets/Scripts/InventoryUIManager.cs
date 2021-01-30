@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryUIManager : MonoBehaviour
 {
     public GameObject SlotPrefab;
+    public static UIInventorySlot CurrentEquippedItem;
 
     private List<UIInventorySlot> UIInventorySlots;
 
@@ -13,11 +14,22 @@ public class InventoryUIManager : MonoBehaviour
         GameEventSystem.ChangeInventoryMaxSlotsEvent += ChangeMaxSlots;
         GameEventSystem.AddInventorySlotEvent += AddNewSlot;
         GameEventSystem.RemoveInventorySlotEvent += RemoveSlot;
-        GameEventSystem.ChangeInventorySlotQuantityEvent += ChangeQuantity;
+        GameEventSystem.ChangeInventorySlotQuantityEvent += SetQuantity;
+        GameEventSystem.CraftItemEvent += ChangeQuantity;
 
         UIInventorySlots = new List<UIInventorySlot>();
     }
-    
+
+    public void ChangeQuantity(string itemName, int quantity)
+    {
+        for (int i = 0; i < UIInventorySlots.Count; i++)
+        {
+            if (itemName.Equals(UIInventorySlots[i].SlotName))
+            {
+                UIInventorySlots[i].ChangeQuantity(-quantity);
+            }
+        }
+    }
 
     public void ChangeMaxSlots(int slots)
     {
@@ -41,7 +53,7 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
-    public void ChangeQuantity(string itemName, int quantity)
+    public void SetQuantity(string itemName, int quantity)
     {
         for (int i = 0; i < UIInventorySlots.Count; i++)
         {
@@ -51,6 +63,7 @@ public class InventoryUIManager : MonoBehaviour
             }
         }
     }
+
     public void RemoveSlot(string itemName)
     {
         for (int i = 0; i < UIInventorySlots.Count; i++)
