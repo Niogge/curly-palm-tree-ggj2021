@@ -70,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2bb14ebdbe9015f4ea56618e971e6f29,
         type: 3}
       propertyPath: m_Name
-      value: Totem1
+      value: Totem1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2bb14ebdbe9015f4ea56618e971e6f29,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb14ebdbe9015f4ea56618e971e6f29, type: 3}

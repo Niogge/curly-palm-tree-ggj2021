@@ -33,6 +33,7 @@ public class PlayerInteractionArea : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Interactable"))
             {
+                Debug.Log("In");
                 IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
                 if (interactable.IsInteractable)
                 {

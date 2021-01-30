@@ -70,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bd0760ae4ed801742872792bf4977b5c,
         type: 3}
       propertyPath: m_Name
-      value: Brick_3
+      value: Brick_3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd0760ae4ed801742872792bf4977b5c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd0760ae4ed801742872792bf4977b5c, type: 3}

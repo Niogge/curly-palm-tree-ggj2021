@@ -17,7 +17,7 @@ public class BezierInstantiator : MonoBehaviour
     [Range(0, 360)] public float Z_rot;
     public Vector3 Starting_rot;
     [Space]
-    [Header("Random Scale")]
+    [Header("Random Rotation")]
     [Range(0, 10)] public float X_scale;
     [Range(0, 10)] public float Y_scale;
     [Range(0, 10)] public float Z_scale;
@@ -74,9 +74,9 @@ public class BezierInstantiator : MonoBehaviour
     {
         Vector3 newRot = new Vector3(0, 0, 0);
 
-        newRot.x = Random.Range(0, X_rot) + Starting_rot.x;
-        newRot.y = Random.Range(0, Y_rot) + Starting_rot.y;
-        newRot.z = Random.Range(0, Z_rot) + Starting_rot.z;
+        newRot.x = Random.Range(0, X_rot)+Starting_rot.x;
+        newRot.y = Random.Range(0, Y_rot)+Starting_rot.y;
+        newRot.z = Random.Range(0, Z_rot)+Starting_rot.z;
 
         return newRot;
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AnimationType { None, Idle, Walk, Attack, Drop }
+public enum AnimationType { None, Idle, Walk, Sabotage, Repair }
 
 public class AnimatorHandler : MonoBehaviour
 {
@@ -25,14 +25,7 @@ public class AnimatorHandler : MonoBehaviour
         if (animationType == AnimationType.Walk)
             animator.SetBool("walk", true);
         if (animationType == AnimationType.Idle)
-        {
             animator.SetBool("walk", false);
-            animator.SetBool("attack", false);
-        }
-
-        if(animationType == AnimationType.Attack)
-            animator.SetBool("attack", true);
-
         if (animationType == AnimationType.None)
             return;
 

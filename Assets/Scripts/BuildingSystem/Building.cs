@@ -57,22 +57,21 @@ public class Building : MonoBehaviour, IInteractable
     {
         //if (CurrentBuildingStep >= 0)
         //    transform.GetChild(CurrentBuildingStep).gameObject.SetActive(false);
-        GameEventSystem.ProgressGame();
 
         CurrentBuildingStep++;
         transform.GetChild(CurrentBuildingStep).gameObject.SetActive(true);
-        GameEventSystem.ToggleBuildingUI(false, null);
+        GameEventSystem.ToggleBuildingUI(false, this);
 
         if (CurrentBuildingStep == BuildingSO.BuildingSteps.Length - 1)
         {
             IsInteractable = false;
             Destroy(BuildingSpotHint.gameObject); //ebbasta co ste costruzioni cribbio!
-            GameEventSystem.EndLongInteraction(this);
             return;
         }
 
         BuildingStep = new BuildingStep(BuildingSO.BuildingSteps[CurrentBuildingStep + 1]);
         GameEventSystem.ToggleBuildingUI(true, this);
+
     }
 
     public void CompleteNormalInteraction()
@@ -93,15 +92,18 @@ public class Building : MonoBehaviour, IInteractable
     public void InterruptInteraction()
     {
         //Chiudere UI di building
-        GameEventSystem.ToggleBuildingUI(false, null);
-        GameEventSystem.EndLongInteraction(this);
     }
 
     public void StartNormalInteraction()
     {
         //1: Avvia LongInteraction, Apri UI di building e comunicagli che deve riguardare questo building.
         GameEventSystem.ToggleBuildingUI(true, this);
-        GameEventSystem.BeginLongInteraction();
+
+        //2: Nella UI di building gestire le aggiunte dei materiali e comunicarle a questo script.
+
+        //3: Se nella UI tutti i materiali dello step sono stati depositati, chiuderla
+
+        //4: Se la UI si è chiusa in seguito a completamento dello step, disattivare step corrente e attivare step++
     }
 
     public void StartSpecialInteraction()

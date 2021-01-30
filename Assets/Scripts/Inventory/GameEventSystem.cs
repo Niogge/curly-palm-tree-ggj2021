@@ -7,28 +7,16 @@ public delegate void OnShowInteractionHint(IInteractable interactable);
 public delegate void OnRefreshInteractionHint(IInteractable interactable);
 public delegate void OnHideInteractionHint();
 
-public delegate void OnAddInventoryItem(Pickable pickable, int quantity);
+public delegate void OnAddInventoryItem(Item item, int quantity);
 public delegate void OnChangeInventoryMaxSlots(int slots);
 public delegate void OnAddInventorySlot(Item item);
 public delegate void OnRemoveInventorySlot(string itemName);
 public delegate void OnChangeInventorySlotQuantity(string itemName, int quantity);
-public delegate void OnDropInventoryItem(string itemName, int quantity);
-public delegate void OnEquipItem(string itemName);
-public delegate void OnUnequipItem();
 
 public delegate void OnActivateBuildingSpot(Building building);
 public delegate void OnToggleBuildingUI(bool activeStatus, Building building);
 public delegate void OnTryGiveMaterialToBuild(string materialName, int quantity);
 public delegate void OnGiveMaterial(int quantity);
-
-public delegate void OnToggleCraftingUI(bool activeStatus);
-public delegate void OnAcquireCraftingRecipe(string recipeName);
-public delegate void OnLoadAllRecipes(ref Recipe[] recipes);
-public delegate void OnCraftItem(string itemName, int quantity);
-
-//progression
-public delegate void OnProgressGame();
-public delegate void OnWinGame();
 
 public class GameEventSystem
 {
@@ -48,45 +36,12 @@ public class GameEventSystem
     public static event OnAddInventorySlot AddInventorySlotEvent;
     public static event OnRemoveInventorySlot RemoveInventorySlotEvent;
     public static event OnChangeInventorySlotQuantity ChangeInventorySlotQuantityEvent;
-    public static event OnDropInventoryItem DropInventoryItemEvent;
-    public static event OnEquipItem EquipItemEvent;
-    public static event OnUnequipItem UnequipItemEvent;
 
     //building
     public static event OnActivateBuildingSpot ActivateBuildingSpotEvent;
     public static event OnToggleBuildingUI ToggleBuildingUIEvent;
     public static event OnTryGiveMaterialToBuild TryGiveMaterialToBuildEvent;
     public static event OnGiveMaterial GiveMaterialEvent;
-
-    //crafting
-    public static event OnToggleCraftingUI ToggleCraftingUIEvent;
-    public static event OnAcquireCraftingRecipe AcquireCraftingRecipeEvent;
-    public static event OnLoadAllRecipes LoadAllRecipesEvent;
-    public static event OnCraftItem CraftItemEvent;
-
-    //progression
-    public static event OnProgressGame ProgressGameEvent;
-    public static event OnWinGame WinGameEvent;
-
-    public static void EquipItem(string itemName)
-    {
-        EquipItemEvent.Invoke(itemName);
-    }
-
-    public static void UnequipItem()
-    {
-        UnequipItemEvent.Invoke();
-    }
-
-    public static void CraftItem(string itemName, int quantity)
-    {
-        CraftItemEvent.Invoke(itemName, quantity);
-    }
-
-    public static void LoadAllRecipes(ref Recipe[] recipes)
-    {
-        LoadAllRecipesEvent.Invoke(ref recipes);
-    }
 
     public static void ActivateBuildingSpot(Building building)
     {
@@ -106,16 +61,6 @@ public class GameEventSystem
     public static void GiveMaterial(int quantity)
     {
         GiveMaterialEvent.Invoke(quantity);
-    }
-
-    public static void ToggleCraftingUI(bool activeStatus)
-    {
-        ToggleCraftingUIEvent.Invoke(activeStatus);
-    }
-
-    public static void AcquireCraftingRecipe(string recipeName)
-    {
-        AcquireCraftingRecipeEvent.Invoke(recipeName);
     }
 
     /// <summary>
@@ -191,9 +136,9 @@ public class GameEventSystem
     /// You should call this whenever the player picks an item.
     /// </summary>
     /// <param name="item"></param>
-    public static void AddInventoryItem(Pickable pickable, int quantity)
+    public static void AddInventoryItem(Item item, int quantity)
     {
-        AddInventoryItemEvent.Invoke(pickable, quantity);
+        AddInventoryItemEvent.Invoke(item, quantity);
     }
 
     public static void ChangeInventoryMaxSlots(int slots)
@@ -214,19 +159,5 @@ public class GameEventSystem
     public static void ChangeInventorySlotQuantity(string itemName, int quantity)
     {
         ChangeInventorySlotQuantityEvent.Invoke(itemName, quantity);
-    }
-    public static void DropInventoryItem(string itemName, int quantity)
-    {
-        DropInventoryItemEvent(itemName, quantity);
-    }
-
-    public static void ProgressGame()
-    {
-        ProgressGameEvent.Invoke();
-    }
-
-    public static void WinGame()
-    {
-        WinGameEvent.Invoke();
     }
 }

@@ -70,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4efba95193fe84a46b7a252c07f89f84,
         type: 3}
       propertyPath: m_Name
-      value: Tile2
+      value: Tile2 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4efba95193fe84a46b7a252c07f89f84,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4efba95193fe84a46b7a252c07f89f84, type: 3}

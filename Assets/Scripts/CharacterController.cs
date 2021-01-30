@@ -34,13 +34,6 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
-        if(player.IsCrafting)
-        {
-            //close crafting menu
-            if(inputHandler.interruptButtonPressed)
-                GameEventSystem.ToggleCraftingUI(false);
-        }
-
         //player is playing
         if (!player.IsInteracting) //<- if the player is not blocked interacting with something
         {
@@ -83,8 +76,6 @@ public class CharacterController : MonoBehaviour
                         playerInteractionArea.NearestInteractable.StartNormalInteraction();
                     }
                 }
-                else //if pressing the interaction key without an interactable nearby
-                    GameEventSystem.ToggleCraftingUI(true); //show crafting menu
             }
             if (inputHandler.specialInteractButtonPressed)
             {
@@ -109,10 +100,6 @@ public class CharacterController : MonoBehaviour
                 //stop the interaction
                 playerInteractionArea.NearestInteractable.InterruptInteraction();
             }
-        }
-        if (inputHandler.attackButtonPressed)
-        {
-            animatorHandler.SetAnimation(AnimationType.Attack);
         }
     }
 }

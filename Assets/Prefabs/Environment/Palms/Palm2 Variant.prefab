@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoconutInstantiator (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5120939520611642474, guid: 2d65d9a4947d40141a07a3c3d9ae89a4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d65d9a4947d40141a07a3c3d9ae89a4, type: 3}
 --- !u!1001 &1742185108979122389
@@ -140,6 +145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Palm2 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2b3f95f8e2529a04e92ddf1786317cd6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b3f95f8e2529a04e92ddf1786317cd6, type: 3}
