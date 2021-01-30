@@ -40,7 +40,8 @@ public class LifeManager : MonoBehaviour
     public void AddDamage(int damage)
     {
         AcctuallyLife -= damage;
-        LifeBar.value = AcctuallyLife;
+        if (LifeBar != null)
+            LifeBar.value = AcctuallyLife;
 
         if (AcctuallyLife <= 0)
             OnDead();

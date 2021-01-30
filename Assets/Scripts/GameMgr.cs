@@ -21,7 +21,7 @@ public class GameMgr : MonoBehaviour
     {
         GameEventSystem.ProgressGameEvent += ProgressGame;
         GameEventSystem.WinGameEvent += WinGame;
-
+        GameState = GameProgress.Early;
         VisibilitySlider.maxValue = (float)GameProgress.LAST;
     }
 
