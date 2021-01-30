@@ -24,6 +24,10 @@ public delegate void OnAcquireCraftingRecipe(string recipeName);
 public delegate void OnLoadAllRecipes(ref Recipe[] recipes);
 public delegate void OnCraftItem(string itemName, int quantity);
 
+//progression
+public delegate void OnProgressGame();
+public delegate void OnWinGame();
+
 public class GameEventSystem
 {
     public static event OnTogglePauseUI TogglePauseUIEvent;
@@ -57,6 +61,9 @@ public class GameEventSystem
     public static event OnLoadAllRecipes LoadAllRecipesEvent;
     public static event OnCraftItem CraftItemEvent;
 
+    //progression
+    public static event OnProgressGame ProgressGameEvent;
+    public static event OnWinGame WinGameEvent;
     public static void CraftItem(string itemName, int quantity)
     {
         CraftItemEvent.Invoke(itemName, quantity);
@@ -197,5 +204,15 @@ public class GameEventSystem
     public static void DropInventoryItem(string itemName, int quantity)
     {
         DropInventoryItemEvent(itemName, quantity);
+    }
+
+    public static void ProgressGame()
+    {
+        ProgressGameEvent.Invoke();
+    }
+
+    public static void WinGame()
+    {
+        WinGameEvent.Invoke();
     }
 }

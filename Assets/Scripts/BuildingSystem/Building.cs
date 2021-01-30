@@ -57,6 +57,7 @@ public class Building : MonoBehaviour, IInteractable
     {
         //if (CurrentBuildingStep >= 0)
         //    transform.GetChild(CurrentBuildingStep).gameObject.SetActive(false);
+        GameEventSystem.ProgressGame();
 
         CurrentBuildingStep++;
         transform.GetChild(CurrentBuildingStep).gameObject.SetActive(true);

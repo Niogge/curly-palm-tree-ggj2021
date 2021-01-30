@@ -2,20 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState
-{
-    start,
-    early, 
-    midGame, 
-    lateGame
-}
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject VoodoDude;
     public Transform Target;
     public float rndSpawnRange = 2;
 
-    public GameState StateOfGame;
     List<GameObject> enemies;
 
     //COUNTERS
@@ -26,7 +18,6 @@ public class EnemySpawnManager : MonoBehaviour
     {
         enemies = new List<GameObject>();
 
-        StateOfGame = GameState.start;
         for (int i = 0; i < 20; i++)
         {
             GameObject go = Instantiate(VoodoDude, transform);
@@ -47,21 +38,21 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SetState()
     {
-        switch (StateOfGame)
+        switch (GameMgr.GameState)
         {
-            case GameState.start:
-                startGameState();
+            case GameProgress.Start:
+
                 break;
 
-            case GameState.early:
+            case GameProgress.Early:
                 earlyGameState();
                 break;
 
-            case GameState.midGame:
+            case GameProgress.Mid:
                 midGameState();
                 break;
 
-            case GameState.lateGame:
+            case GameProgress.Late:
                 lateGameState();
                 break;
 
@@ -90,7 +81,7 @@ public class EnemySpawnManager : MonoBehaviour
     void earlyGameState()
     {
         timeOfSpawnCounter += Time.deltaTime;
-        if (timeOfSpawnCounter >= timeOfSpawnDefault *0.5f)
+        if (timeOfSpawnCounter >= timeOfSpawnDefault)
         {
             timeOfSpawnCounter = 0;
             for (int i = 0; i < enemies.Count; i++)

@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         itemSlots = new List<ItemSlot>();
-        MaxSlots = 8;
         Recipes = new Recipe[RecipesSO.Length];
         for (int i = 0; i < RecipesSO.Length; i++)
         {
@@ -167,12 +166,12 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    private void Update()
-    {
-        for (int i = 0; i < itemSlots.Count; i++)
-        {
-            if (itemSlots[i].ItemName != "")
-                Debug.Log("Item " + itemSlots[i].ItemName + " Slot Number " + i + " Quantity: " + itemSlots[i].Quantity);
-        }
-    }
+    //private void Update()
+    //{
+    //    for (int i = 0; i < itemSlots.Count; i++)
+    //    {
+    //        if (itemSlots[i].ItemName != "")
+    //            Debug.Log("Item " + itemSlots[i].ItemName + " Slot Number " + i + " Quantity: " + itemSlots[i].Quantity);
+    //    }
+    //}
 }
