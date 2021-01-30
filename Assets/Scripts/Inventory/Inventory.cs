@@ -78,7 +78,12 @@ public class Inventory : MonoBehaviour
             if (itemSlots[i].ItemName.Equals(pickable.Item.Name)) //if there is a slot of the given item type
             {
                 if (itemSlots[i].Add(quantity))//add the given quantity to this slot
+                {
                     GameEventSystem.ChangeInventorySlotQuantity(pickable.Item.Name, itemSlots[i].Quantity);
+                    GameEventSystem.DestroyInteractable(pickable);
+                    pickable.ObjectPicked();
+                    Destroy(pickable.gameObject);
+                }
 
                 return;
             }
@@ -91,7 +96,9 @@ public class Inventory : MonoBehaviour
             itemSlots.Add(slot);
             GameEventSystem.AddInventorySlot(pickable.Item);
             GameEventSystem.DestroyInteractable(pickable);
+            pickable.ObjectPicked();
             Destroy(pickable.gameObject);
+
         }
         else
             pickable.transform.position = transform.position;
@@ -144,7 +151,7 @@ public class Inventory : MonoBehaviour
                 //instantiate the prefab first for calculate quantity items
                 GameObject go = Instantiate(itemSlots[i].Prefab);
 
-                Vector3 rndPos = new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3));
+                Vector3 rndPos = new Vector3(Random.Range(-3, 3), 5, Random.Range(-3, 3));
                 go.transform.position = transform.position + rndPos;
 
                 Pickable pk = go.GetComponent<Pickable>();

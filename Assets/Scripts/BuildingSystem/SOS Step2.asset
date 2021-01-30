@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Requirements:
   - ItemType: 0
-    Quantity: 30
+    Quantity: 45
     GivenQuantity: 0
   - ItemType: 1
-    Quantity: 30
+    Quantity: 15
+    GivenQuantity: 0
+  - ItemType: 2
+    Quantity: 10
     GivenQuantity: 0

@@ -57,6 +57,7 @@ public class LifeManager : MonoBehaviour
 
             case Owner.Enemy:
                 gameObject.SetActive(false);
+                gameObject.GetComponent<EnemyBehaviour>().OnDeath();
                 break;
         }
     }

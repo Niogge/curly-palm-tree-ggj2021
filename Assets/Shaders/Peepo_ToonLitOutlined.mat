@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Peepo_ToonLitOutlined
   m_Shader: {fileID: 4800000, guid: a90dfc4a68985f94792f59b4dd3e5461, type: 3}
-  m_ShaderKeywords: USE_FOG
+  m_ShaderKeywords: USE_FOG _USEOUTLINE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -29,8 +29,8 @@ Material:
     - _RimAmount: 0.716
     - _testSmooth: 2.21
     - _useFog: 1
-    - _useOutline: 0
+    - _useOutline: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 1024, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

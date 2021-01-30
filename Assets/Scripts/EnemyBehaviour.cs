@@ -10,6 +10,7 @@ enum State
 public class EnemyBehaviour : MonoBehaviour
 {
     public DamageBehaviour Weapon;
+    public GameObject DropPrefab;
 
     [HideInInspector]
     public Transform Player;
@@ -33,6 +34,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         transform.position = InitialPosition;
     }
+
+    public void OnDeath()
+    {
+        GameObject go = Instantiate(DropPrefab);
+        go.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+        go.GetComponent<Pickable>().CreateItem();
+    }
+
     void Update()
     {
         transform.LookAt(Player);
@@ -40,6 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
         CheckStates();
         DumpFSM();
     }
+
 
     public void BeginSwing()
     {

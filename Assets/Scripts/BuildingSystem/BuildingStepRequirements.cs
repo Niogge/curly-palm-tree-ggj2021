@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Stone, Wood, Leaf, Metal, Coral }
+public enum ItemType { Stone, Wood, Rags, Radio }
 
 [System.Serializable]
 public class BuildingStepRequirements

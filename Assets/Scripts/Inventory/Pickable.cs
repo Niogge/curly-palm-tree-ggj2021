@@ -18,6 +18,9 @@ public class Pickable : MonoBehaviour, IInteractable
     public Item_SO ItemSO;
     public Item Item;
 
+    [HideInInspector]
+    public ItemSpawner Spawner;
+
     private void OnEnable()
     {
         IsInteractable = true;
@@ -31,6 +34,12 @@ public class Pickable : MonoBehaviour, IInteractable
     public void CreateItem()
     {
         Item = new Item(ItemSO);
+    }
+
+    public void ObjectPicked()
+    {
+        if (Spawner != null)
+            Spawner.CanSpawn = true;
     }
 
     //IInteractable-----

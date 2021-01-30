@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: Building SOS
   m_EditorClassIdentifier: 
   Name: SOS Signal
-  TemplatePrefab: {fileID: 0}
-  CompletePrefab: {fileID: 0}
   BuildingSteps:
   - {fileID: 11400000, guid: 297e1a4c2026daa4082fa01188344d52, type: 2}
   - {fileID: 11400000, guid: 7a5096190a8b5ce4ea92ec3f3c81ae28, type: 2}
   - {fileID: 11400000, guid: cc12437d7bd6d8541859ef3ef19eb43d, type: 2}
-  - {fileID: 11400000, guid: ae7780a006312084b9920f1a32820056, type: 2}
   - {fileID: 11400000, guid: 0c5acc68e655eb448b8e7607777476c3, type: 2}

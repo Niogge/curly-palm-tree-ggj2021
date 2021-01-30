@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SOS FinalStep
   m_EditorClassIdentifier: 
   Requirements:
-  - ItemType: 0
-    Quantity: 60
-    GivenQuantity: 0
   - ItemType: 1
-    Quantity: 60
+    Quantity: 50
+    GivenQuantity: 0
+  - ItemType: 3
+    Quantity: 1
     GivenQuantity: 0

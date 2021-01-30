@@ -13,7 +13,7 @@ public class EnemySpawnManager : MonoBehaviour
     List<GameObject> enemies;
 
     //COUNTERS
-    public float timeOfSpawnDefault = 5f;
+    public float TimeOfSpawnDefault = 15f;
     float timeOfSpawnCounter;
 
     void Start()
@@ -31,45 +31,27 @@ public class EnemySpawnManager : MonoBehaviour
             go.SetActive(false);
             enemies.Add(go);
         }
-
+        timeOfSpawnCounter = Random.Range(0, TimeOfSpawnDefault);
         Target = GameObject.Find("Player").transform;
     }
 
     void Update()
     {
-        if (Vector3.Distance(Target.position, transform.position) <= DistForActiveSpawn)
-            SetState();
+        //if (Vector3.Distance(Target.position, transform.position) <= DistForActiveSpawn)
+        //    SetState();
+        SpawnEnemy();
     }
 
-    void SetState()
+    void SpawnEnemy()
     {
-        switch (GameMgr.GameState)
-        {
-            case GameProgress.Start:
-
-                break;
-
-            case GameProgress.Early:
-                earlyGameState();
-                break;
-
-            case GameProgress.Mid:
-                midGameState();
-                break;
-
-            case GameProgress.Late:
-                lateGameState();
-                break;
-
-            default:
-                break;
-        }
+        earlyGameState();
     }
+
 
     void startGameState()
     {
         timeOfSpawnCounter += Time.deltaTime;
-        if (timeOfSpawnCounter >= timeOfSpawnDefault)
+        if (timeOfSpawnCounter >= TimeOfSpawnDefault)
         {
             timeOfSpawnCounter = 0;
             for (int i = 0; i < enemies.Count; i++)
@@ -86,7 +68,7 @@ public class EnemySpawnManager : MonoBehaviour
     void earlyGameState()
     {
         timeOfSpawnCounter += Time.deltaTime;
-        if (timeOfSpawnCounter >= timeOfSpawnDefault)
+        if (timeOfSpawnCounter >= TimeOfSpawnDefault)
         {
             timeOfSpawnCounter = 0;
             for (int i = 0; i < enemies.Count; i++)
@@ -103,7 +85,7 @@ public class EnemySpawnManager : MonoBehaviour
     void midGameState()
     {
         timeOfSpawnCounter += Time.deltaTime;
-        if (timeOfSpawnCounter >= timeOfSpawnDefault)
+        if (timeOfSpawnCounter >= TimeOfSpawnDefault)
         {
             timeOfSpawnCounter = 0;
             int index = 0;
@@ -123,7 +105,7 @@ public class EnemySpawnManager : MonoBehaviour
     void lateGameState()
     {
         timeOfSpawnCounter += Time.deltaTime;
-        if (timeOfSpawnCounter >= timeOfSpawnDefault *0.5f)
+        if (timeOfSpawnCounter >= TimeOfSpawnDefault *0.5f)
         {
             timeOfSpawnCounter = 0;
             int index = 0;

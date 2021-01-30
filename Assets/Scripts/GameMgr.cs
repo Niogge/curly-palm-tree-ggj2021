@@ -8,7 +8,7 @@ public enum GameProgress
     Early = 1,
     Mid = 2,
     Late = 3,
-    LAST = 4,
+    LAST = 4
 
 }
 public class GameMgr : MonoBehaviour
@@ -28,7 +28,7 @@ public class GameMgr : MonoBehaviour
     void ProgressGame()
     {
         GameState++;
-        VisibilitySlider.value =(float)( GameProgress.LAST - (GameProgress.LAST - GameState));
+        VisibilitySlider.value = (float)( GameProgress.LAST - (GameProgress.LAST - GameState));
         if (GameState > GameProgress.Late)
         {
             GameEventSystem.WinGame();
