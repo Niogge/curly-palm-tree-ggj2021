@@ -57,16 +57,10 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
         Refresh(SelectedRecipe);
 
         GameObject go = Instantiate(SelectedRecipe.Prefab);
-        Pickable script = go.GetComponent<Pickable>();
-        script.CreateItem();
-        script.Item.Quantity = SelectedRecipe.OutputQuantity;
+        Pickable pickable = go.GetComponent<Pickable>();
+        pickable.CreateItem();
+        pickable.Item.Quantity = SelectedRecipe.OutputQuantity;
 
-        if (Inventory.SpaceAvailable)
-        {
-            GameEventSystem.AddInventoryItem(script.Item, SelectedRecipe.OutputQuantity);
-            Destroy(go);
-        }
-        else
-            go.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        GameEventSystem.AddInventoryItem(pickable, SelectedRecipe.OutputQuantity);
     }
 }

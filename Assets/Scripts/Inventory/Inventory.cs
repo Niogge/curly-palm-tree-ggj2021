@@ -66,14 +66,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void AddItem(Item item, int quantity)
+    private void AddItem(Pickable pickable, int quantity)
     {
         for (int i = 0; i < itemSlots.Count; i++) //search all the slots
         {
-            if (itemSlots[i].ItemName.Equals(item.Name)) //if there is a slot of the given item type
+            if (itemSlots[i].ItemName.Equals(pickable.Item.Name)) //if there is a slot of the given item type
             {
                 if (itemSlots[i].Add(quantity))//add the given quantity to this slot
-                    GameEventSystem.ChangeInventorySlotQuantity(item.Name, itemSlots[i].Quantity);
+                    GameEventSystem.ChangeInventorySlotQuantity(pickable.Item.Name, itemSlots[i].Quantity);
 
                 return;
             }
@@ -82,11 +82,16 @@ public class Inventory : MonoBehaviour
         //here, the slot of this item type doesn't exist, so create the slot type and add the item quantity in it.
         if (SpaceAvailable)
         {
-            ItemSlot slot = new ItemSlot(item.Name, item.Quantity, item.CanStack, item.MaxQuantity, item.Prefab);
+            ItemSlot slot = new ItemSlot(pickable.Item.Name, pickable.Item.Quantity, pickable.Item.CanStack, pickable.Item.MaxQuantity, pickable.Item.Prefab);
             itemSlots.Add(slot);
-            GameEventSystem.AddInventorySlot(item);
+            GameEventSystem.AddInventorySlot(pickable.Item);
+            GameEventSystem.DestroyInteractable(pickable);
+            Destroy(pickable.gameObject);
         }
+        else
+            pickable.transform.position = transform.position;
     }
+
 
     private void RemoveItem(string itemName, int quantity)
     {

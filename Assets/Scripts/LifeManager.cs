@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum Owner
 {
@@ -9,6 +10,8 @@ enum Owner
 public class LifeManager : MonoBehaviour
 {
     public int Life = 50;
+    public Slider LifeBar;
+
     [SerializeField]
     Owner owner;
 
@@ -18,15 +21,18 @@ public class LifeManager : MonoBehaviour
     private void Start()
     {
         AcctuallyLife = Life;
+        LifeBar.maxValue = Life;
     }
     private void OnEnable()
     {
         AcctuallyLife = Life;
+        LifeBar.maxValue = Life;
     }
 
     public void AddDamage(int damage)
     {
         AcctuallyLife -= damage;
+        LifeBar.value = AcctuallyLife;
 
         if (AcctuallyLife <= 0)
             OnDead();

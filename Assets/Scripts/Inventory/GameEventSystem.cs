@@ -7,7 +7,7 @@ public delegate void OnShowInteractionHint(IInteractable interactable);
 public delegate void OnRefreshInteractionHint(IInteractable interactable);
 public delegate void OnHideInteractionHint();
 
-public delegate void OnAddInventoryItem(Item item, int quantity);
+public delegate void OnAddInventoryItem(Pickable pickable, int quantity);
 public delegate void OnChangeInventoryMaxSlots(int slots);
 public delegate void OnAddInventorySlot(Item item);
 public delegate void OnRemoveInventorySlot(string itemName);
@@ -177,9 +177,9 @@ public class GameEventSystem
     /// You should call this whenever the player picks an item.
     /// </summary>
     /// <param name="item"></param>
-    public static void AddInventoryItem(Item item, int quantity)
+    public static void AddInventoryItem(Pickable pickable, int quantity)
     {
-        AddInventoryItemEvent.Invoke(item, quantity);
+        AddInventoryItemEvent.Invoke(pickable, quantity);
     }
 
     public static void ChangeInventoryMaxSlots(int slots)

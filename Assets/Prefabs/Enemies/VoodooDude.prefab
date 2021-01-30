@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Life: 50
+  LifeBar: {fileID: 0}
   owner: 1
   AcctuallyLife: 0
 --- !u!1 &7022041788453798377
