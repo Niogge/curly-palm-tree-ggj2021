@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryUIManager : MonoBehaviour
 {
     public GameObject SlotPrefab;
+    public static UIInventorySlot CurrentEquippedItem;
 
     private List<UIInventorySlot> UIInventorySlots;
 

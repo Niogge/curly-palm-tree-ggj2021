@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     public RecipeSO[] RecipesSO; //<- set in inspector and don't use it in game.
     [HideInInspector] public Recipe[] Recipes;
 
+    [HideInInspector] public GameObject EquippedItem;
+    public GameObject[] EquippableItems;
+
     private void Awake()
     {
         itemSlots = new List<ItemSlot>();
@@ -25,6 +28,8 @@ public class Inventory : MonoBehaviour
         GameEventSystem.AcquireCraftingRecipeEvent += UnlockRecipe;
         GameEventSystem.CraftItemEvent += CraftItem;
         GameEventSystem.DropInventoryItemEvent += DropItem;
+        GameEventSystem.EquipItemEvent += EquipItem;
+        GameEventSystem.UnequipItemEvent += UnequipItem;
     }
 
     private void Start()
@@ -92,6 +97,24 @@ public class Inventory : MonoBehaviour
             pickable.transform.position = transform.position;
     }
 
+    private void EquipItem(string itemName)
+    {
+        for (int i = 0; i < EquippableItems.Length; i++)
+        {
+            if (EquippableItems[i].name.Equals(itemName))
+            {
+                EquippableItems[i].SetActive(true);
+                EquippedItem = EquippableItems[i];
+            }
+        }
+    }
+
+    private void UnequipItem()
+    {
+        if (EquippedItem != null)
+            EquippedItem.SetActive(false);
+        EquippedItem = null;
+    }
 
     private void RemoveItem(string itemName, int quantity)
     {

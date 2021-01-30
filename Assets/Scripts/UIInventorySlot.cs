@@ -13,8 +13,11 @@ public class UIInventorySlot : MonoBehaviour
     public string SlotName { get { return Name.text; } }
     [HideInInspector]
     public bool IsEmpty;
+    public Button EquipButton;
     [HideInInspector]
     public int quantity { get { return int.Parse(Quantity.text); } }
+
+    private bool isEquippable;
 
     //details
     public GameObject DetailsPanel;
@@ -25,6 +28,7 @@ public class UIInventorySlot : MonoBehaviour
     {
         IsEmpty = true;
     }
+
     public void PopulateSlot(Item item)
     {
         Image.enabled = true;
@@ -33,7 +37,17 @@ public class UIInventorySlot : MonoBehaviour
         Quantity.text = item.Quantity.ToString();
         Description.text = item.Description;
         NumOfSelectionItemText.Select();
+        isEquippable = item.IsEquippable;
         IsEmpty = false;
+    }
+
+    public void Unequip()
+    {
+        Button button = GetComponent<Button>();
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(EquipItem);
+        EquipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip Item";
+        GameEventSystem.UnequipItem();
     }
 
     public void ClearSlot()
@@ -61,15 +75,33 @@ public class UIInventorySlot : MonoBehaviour
 
     public void OpenSlotDetails()
     {
+        if (isEquippable)
+            EquipButton.gameObject.SetActive(true);
+        else
+            EquipButton.gameObject.SetActive(false);
+
         if (!IsEmpty)
             DetailsPanel.SetActive(!DetailsPanel.activeSelf);
 
         NumOfSelectionItemText.text = "";
         NumOfSelectionItemText.Select();
     }
+
     public void DropItemButton()
     {
         GameEventSystem.DropInventoryItem(SlotName, int.Parse(NumOfSelectionItemText.text));
         OpenSlotDetails();
+    }
+
+    public void EquipItem()
+    {
+        if (InventoryUIManager.CurrentEquippedItem != null)
+            InventoryUIManager.CurrentEquippedItem.Unequip();
+
+        EquipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip Item";
+        EquipButton.onClick.RemoveAllListeners();
+        EquipButton.onClick.AddListener(Unequip);
+        GameEventSystem.EquipItem(SlotName);
+        InventoryUIManager.CurrentEquippedItem = this;
     }
 }

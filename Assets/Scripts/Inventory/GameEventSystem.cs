@@ -13,6 +13,8 @@ public delegate void OnAddInventorySlot(Item item);
 public delegate void OnRemoveInventorySlot(string itemName);
 public delegate void OnChangeInventorySlotQuantity(string itemName, int quantity);
 public delegate void OnDropInventoryItem(string itemName, int quantity);
+public delegate void OnEquipItem(string itemName);
+public delegate void OnUnequipItem();
 
 public delegate void OnActivateBuildingSpot(Building building);
 public delegate void OnToggleBuildingUI(bool activeStatus, Building building);
@@ -47,7 +49,8 @@ public class GameEventSystem
     public static event OnRemoveInventorySlot RemoveInventorySlotEvent;
     public static event OnChangeInventorySlotQuantity ChangeInventorySlotQuantityEvent;
     public static event OnDropInventoryItem DropInventoryItemEvent;
-
+    public static event OnEquipItem EquipItemEvent;
+    public static event OnUnequipItem UnequipItemEvent;
 
     //building
     public static event OnActivateBuildingSpot ActivateBuildingSpotEvent;
@@ -64,6 +67,17 @@ public class GameEventSystem
     //progression
     public static event OnProgressGame ProgressGameEvent;
     public static event OnWinGame WinGameEvent;
+
+    public static void EquipItem(string itemName)
+    {
+        EquipItemEvent.Invoke(itemName);
+    }
+
+    public static void UnequipItem()
+    {
+        UnequipItemEvent.Invoke();
+    }
+
     public static void CraftItem(string itemName, int quantity)
     {
         CraftItemEvent.Invoke(itemName, quantity);

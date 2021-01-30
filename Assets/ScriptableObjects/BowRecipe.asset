@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8451bf545fe127a4cb62ea699fb1fdad, type: 3}
   m_Name: BowRecipe
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 8997387335304072695, guid: 9082dd2f9acc4754a9911e639f12f35a, type: 3}
-  RecipeName: N'arco
+  Prefab: {fileID: 2706606686300154674, guid: f6643bfb1baf16a4d98f9b99e7d7d20e, type: 3}
+  RecipeName: Bow
   OutputQuantity: 1
   Acquired: 1
   Requirements:
   - ItemType: 1
     NeededQuantity: 30
-  - ItemType: 3
+  - ItemType: 0
     NeededQuantity: 10

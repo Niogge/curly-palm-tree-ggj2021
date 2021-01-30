@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Arrows
   m_EditorClassIdentifier: 
   Name: Arrows
-  Description: Arcune belle frecce guajo
+  Description: Use the pointed side.
   CanStack: 1
   MaxStack: 60
   MinSpawnQuantity: 0
   MaxSpawnQuantity: 0
+  IsEquippable: 0
   Prefab: {fileID: 1404299295457920313, guid: b8bdae6efbe8c68408af1ad99684e588, type: 3}
   UIRepresentation: {fileID: 21300000, guid: 9ef549820489c3341a5444f4743d7964, type: 3}
