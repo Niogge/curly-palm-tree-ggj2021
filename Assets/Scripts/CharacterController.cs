@@ -110,5 +110,9 @@ public class CharacterController : MonoBehaviour
                 playerInteractionArea.NearestInteractable.InterruptInteraction();
             }
         }
+        if (inputHandler.attackButtonPressed)
+        {
+            animatorHandler.SetAnimation(AnimationType.Attack);
+        }
     }
 }

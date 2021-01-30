@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
                 //instantiate the prefab first for calculate quantity items
                 GameObject go = Instantiate(itemSlots[i].Prefab);
 
-                Vector3 rndPos = new Vector3(Random.Range(1, 3), 0, Random.Range(1, 3));
+                Vector3 rndPos = new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3));
                 go.transform.position = transform.position + rndPos;
 
                 Pickable pk = go.GetComponent<Pickable>();

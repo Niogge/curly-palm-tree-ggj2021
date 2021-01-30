@@ -183,6 +183,50 @@ Transform:
   m_Father: {fileID: 9190959808051840867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1400869187917431873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3801528613251704351}
+  - component: {fileID: 7451402774411633557}
+  m_Layer: 0
+  m_Name: DamageCollider
+  m_TagString: DamageCollider_enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3801528613251704351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400869187917431873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6064259506833082005}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7451402774411633557
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400869187917431873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.13
+  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!1 &1491357009806202178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1263,7 @@ GameObject:
   - component: {fileID: 6026426089003229560}
   - component: {fileID: 6026426089003229562}
   - component: {fileID: 6026426089003229563}
+  - component: {fileID: 4631280674816987000}
   m_Layer: 0
   m_Name: VoodooDude
   m_TagString: Untagged
@@ -1239,6 +1284,7 @@ Transform:
   m_Children:
   - {fileID: 1763371635841967617}
   - {fileID: 8513354124106506021}
+  - {fileID: 3801528613251704351}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 81.824005, z: 0}
@@ -1303,10 +1349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438cefc2d2fac394a8e8a27b37e12d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weapon: {fileID: 8205902704477508535}
   Player: {fileID: 0}
   RotSpeed: 10
   MinChaseDist: 1.5
   MaxAttackDist: 3
+  InitialPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &6026426089003229563
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1329,6 +1377,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4631280674816987000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6873411436440329263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f5df7fa6e83494abe96ffe7f4c493a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Life: 50
+  owner: 1
+  AcctuallyLife: 0
 --- !u!1 &7022041788453798377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +2024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4375812603839245014, guid: e817362a6981d0744b15d13939a4569e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e817362a6981d0744b15d13939a4569e, type: 3}
 --- !u!4 &8462315401778543999 stripped
@@ -1969,3 +2037,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4792390515433671955}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8205902704477508535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3702175223293714084, guid: e817362a6981d0744b15d13939a4569e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4792390515433671955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e448bb27d2b2d44989147768fe40a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

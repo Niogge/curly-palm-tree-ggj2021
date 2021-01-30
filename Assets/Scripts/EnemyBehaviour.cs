@@ -9,22 +9,30 @@ enum State
 }
 public class EnemyBehaviour : MonoBehaviour
 {
+    public DamageBehaviour Weapon;
+
     [HideInInspector]
     public Transform Player;
     public float RotSpeed = 10f;
     public float MinChaseDist;
     public float MaxAttackDist;
 
+    [HideInInspector]
+    public Vector3 InitialPosition;
     private Animator anim;
     private NavMeshAgent agent;
     private State state;
-    void Start()
+
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        transform.position = InitialPosition;
+    }
     void Update()
     {
         transform.LookAt(Player);
@@ -32,8 +40,19 @@ public class EnemyBehaviour : MonoBehaviour
         CheckStates();
         DumpFSM();
     }
-    
-    void CheckStates()
+
+    public void BeginSwing()
+    {
+        Weapon.CanDamage = true;
+    }
+
+    public void EndSwing()
+    {
+        Weapon.CanDamage = false;
+    }
+
+
+void CheckStates()
     {
         float dist = Vector3.Distance(transform.position, Player.position);
         if (dist > MaxAttackDist)

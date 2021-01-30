@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Owner
+{
+    Player, Enemy
+}
 public class LifeManager : MonoBehaviour
 {
     public int Life = 50;
+    [SerializeField]
+    Owner owner;
 
     [HideInInspector]
     public int AcctuallyLife;
@@ -13,10 +19,15 @@ public class LifeManager : MonoBehaviour
     {
         AcctuallyLife = Life;
     }
+    private void OnEnable()
+    {
+        AcctuallyLife = Life;
+    }
 
     public void AddDamage(int damage)
     {
-        AcctuallyLife -= Life;
+        Debug.Log("FAMALE CAZZO! : " +  owner.ToString());
+        AcctuallyLife -= damage;
 
         if (AcctuallyLife <= 0)
             OnDead();
@@ -24,6 +35,15 @@ public class LifeManager : MonoBehaviour
 
     void OnDead()
     {
-        Debug.Log("porcamadonnalaida");
+        switch (owner)
+        {
+            case Owner.Player:
+
+                break;
+
+            case Owner.Enemy:
+                gameObject.SetActive(false);
+                break;
+        }
     }
 }

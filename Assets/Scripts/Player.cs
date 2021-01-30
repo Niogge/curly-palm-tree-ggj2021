@@ -7,6 +7,7 @@ public enum FieldOfViewType { Circle, Cone }
 
 public class Player : MonoBehaviour
 {
+    public DamageBehaviour Weapon;
     //This class should only contain the main player data, not behaviours!
 
     public bool IsPaused; //<- true if the player is in the pause menu
@@ -30,5 +31,15 @@ public class Player : MonoBehaviour
             GetComponent<InputHandler>().GetPlayerControls().GamePlay.Movement.Enable();
         else
             GetComponent<InputHandler>().GetPlayerControls().GamePlay.Movement.Disable();
+    }
+
+    public void BeginSwing()
+    {
+        Weapon.CanDamage = true;
+    }
+
+    public void EndSwing()
+    {
+        Weapon.CanDamage = false;
     }
 }

@@ -3729,7 +3729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1142948133
 Transform:
   m_ObjectHideFlags: 0
@@ -6345,6 +6345,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b958be1136ed6a14ba6700d3c7d8c91a,
         type: 2}
+    - target: {fileID: 1049210584, guid: 3d246d1674c08084d8bacf0fd8bb854d, type: 3}
+      propertyPath: MovementSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 492228688431673838, guid: 3d246d1674c08084d8bacf0fd8bb854d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3898270357780259010, guid: 3d246d1674c08084d8bacf0fd8bb854d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6404,6 +6413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449867251764562594, guid: 3d246d1674c08084d8bacf0fd8bb854d,
+        type: 3}
+      propertyPath: m_TagString
+      value: DamageCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d246d1674c08084d8bacf0fd8bb854d, type: 3}

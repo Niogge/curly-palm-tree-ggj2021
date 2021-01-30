@@ -34,6 +34,7 @@ public class EnemySpawnManager : MonoBehaviour
             go.transform.position = transform.position + rnd;
             EnemyBehaviour enemyBehaviour = go.GetComponent<EnemyBehaviour>();
             enemyBehaviour.Player = Target;
+            enemyBehaviour.InitialPosition = go.transform.position;
             go.SetActive(false);
             enemies.Add(go);
         }

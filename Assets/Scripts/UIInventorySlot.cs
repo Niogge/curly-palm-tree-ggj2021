@@ -64,6 +64,7 @@ public class UIInventorySlot : MonoBehaviour
         if (!IsEmpty)
             DetailsPanel.SetActive(!DetailsPanel.activeSelf);
 
+        NumOfSelectionItemText.text = "";
         NumOfSelectionItemText.Select();
     }
     public void DropItemButton()
