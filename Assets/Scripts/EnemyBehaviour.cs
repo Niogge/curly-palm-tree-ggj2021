@@ -81,6 +81,10 @@ public class EnemyBehaviour : MonoBehaviour
 void CheckStates()
     {
         float dist = Vector3.Distance(transform.position, Player.position);
+        if(dist > MaxDistanceToChase)
+        {
+            state = State.NONE;
+        }
         if (dist > MaxAttackDist)
         {
             state = State.Chase;
@@ -104,10 +108,18 @@ void CheckStates()
                 AttackState();
                 break;
             case State.NONE:
+                IdleState();
                 break;
         }
     }
 
+    public void IdleState()
+    {
+        if (anim.GetBool("attack"))
+            anim.SetBool("attack", false);
+        if (anim.GetBool("walk"))
+            anim.SetBool("walk", false);
+    }
     public void ChaseState()
     {
         if (anim.GetBool("attack"))

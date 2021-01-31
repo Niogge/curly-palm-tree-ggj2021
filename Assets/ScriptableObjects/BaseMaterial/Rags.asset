@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: Rags
   Description: Nasty sweaty cloths
   CanStack: 1
-  MaxStack: 50
-  MinSpawnQuantity: 2
-  MaxSpawnQuantity: 5
+  MaxStack: 100
+  MinSpawnQuantity: 5
+  MaxSpawnQuantity: 10
   IsEquippable: 0
   Prefab: {fileID: 1479900563356883743, guid: 592c89dd08eb19b4281c60462e0bb8fb, type: 3}
   UIRepresentation: {fileID: 21300000, guid: 0ff36db01658fad47b477c8542bf8c1c, type: 3}

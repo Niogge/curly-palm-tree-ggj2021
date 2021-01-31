@@ -1357,7 +1357,7 @@ MonoBehaviour:
   RotSpeed: 10
   MinChaseDist: 2.8
   MaxAttackDist: 3
-  MaxDistanceToChase: 20
+  MaxDistanceToChase: 15
   InitialPosition: {x: 0, y: 0, z: 0}
   attackClips:
   - {fileID: 8300000, guid: 3eab98580bca36e478041800ceb54f2c, type: 3}
@@ -1403,6 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Life: 50
   LifeBar: {fileID: 0}
+  ImageDie: {fileID: 0}
   owner: 1
   AcctuallyLife: 0
 --- !u!82 &1887983445056328179
