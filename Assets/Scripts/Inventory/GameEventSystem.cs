@@ -63,6 +63,7 @@ public class GameEventSystem
     public static event OnAcquireCraftingRecipe AcquireCraftingRecipeEvent;
     public static event OnLoadAllRecipes LoadAllRecipesEvent;
     public static event OnCraftItem CraftItemEvent;
+    public static event OnCraftItem CraftHatEvent;
 
     //progression
     public static event OnProgressGame ProgressGameEvent;
@@ -81,6 +82,10 @@ public class GameEventSystem
     public static void CraftItem(string itemName, int quantity)
     {
         CraftItemEvent.Invoke(itemName, quantity);
+    }
+    public static void CraftHat(string itemName, int quantity)
+    {
+        CraftHatEvent.Invoke(itemName, quantity);
     }
 
     public static void LoadAllRecipes(ref Recipe[] recipes)

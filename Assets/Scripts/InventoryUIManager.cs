@@ -16,6 +16,7 @@ public class InventoryUIManager : MonoBehaviour
         GameEventSystem.RemoveInventorySlotEvent += RemoveSlot;
         GameEventSystem.ChangeInventorySlotQuantityEvent += SetQuantity;
         GameEventSystem.CraftItemEvent += ChangeQuantity;
+        GameEventSystem.CraftHatEvent += ChangeQuantity;
 
         UIInventorySlots = new List<UIInventorySlot>();
     }

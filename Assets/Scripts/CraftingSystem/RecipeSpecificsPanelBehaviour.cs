@@ -47,9 +47,13 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
         }
         SelectedRecipe = null;
     }
-
     public void CraftButtonClick()
     {
+        if(SelectedRecipe.RecipeName == "Hat")
+        {
+            hatCrafting();
+            return;
+        }
         for (int i = 0; i < SelectedRecipe.Requirements.Length; i++)
         {
             GameEventSystem.CraftItem(SelectedRecipe.Requirements[i].ItemType.ToString(), SelectedRecipe.Requirements[i].NeededQuantity);
@@ -63,4 +67,13 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
 
         GameEventSystem.AddInventoryItem(pickable, SelectedRecipe.OutputQuantity);
     }
+    private void hatCrafting()
+    {
+        for (int i = 0; i < SelectedRecipe.Requirements.Length; i++)
+        {
+            GameEventSystem.CraftItem(SelectedRecipe.Requirements[i].ItemType.ToString(), SelectedRecipe.Requirements[i].NeededQuantity);
+        }
+        HatManager.Instance.AddHat();
+    }
+
 }
