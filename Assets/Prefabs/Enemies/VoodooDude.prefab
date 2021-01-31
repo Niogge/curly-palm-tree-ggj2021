@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 6026426089003229563}
   - component: {fileID: 4631280674816987000}
   - component: {fileID: 1887983445056328179}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VoodooDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
