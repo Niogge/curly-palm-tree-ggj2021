@@ -8,6 +8,8 @@ public class GameUIManager : MonoBehaviour
     public GameObject PausePanel; //<- set in inspector
     public GameObject CraftingPanel; //<- set in inspector
 
+    public GameObject PopupPrefab;
+
     private void Awake()
     {
         //this little trick activates the panels, and in their awake they automatically go back unactive
@@ -19,6 +21,8 @@ public class GameUIManager : MonoBehaviour
         GameEventSystem.TogglePauseUIEvent += TogglePausePanel;
         GameEventSystem.ToggleBuildingUIEvent += ToggleBuildingPanel;
         GameEventSystem.ToggleCraftingUIEvent += ToggleCraftingPanel;
+        GameEventSystem.ShowFastPopupEvent += ShowPopup;
+        GameEventSystem.ShowDialogPopupEvent += ShowPopup;
     }
 
     private void ToggleBuildingPanel(bool activeStatus, Building building)
@@ -35,5 +39,19 @@ public class GameUIManager : MonoBehaviour
     private void TogglePausePanel(bool activeStatus)
     {
         PausePanel.SetActive(activeStatus);
+    }
+
+    private void ShowPopup(string message, float time)
+    {
+        GameObject go = Instantiate(PopupPrefab, transform);
+        PopupBehaviour script = go.GetComponent<PopupBehaviour>();
+        script.Init(message, time);
+    }
+
+    private void ShowPopup(List<string> messages, string buttonText)
+    {
+        GameObject go = Instantiate(PopupPrefab, transform);
+        PopupBehaviour script = go.GetComponent<PopupBehaviour>();
+        script.Init(messages, buttonText);
     }
 }
