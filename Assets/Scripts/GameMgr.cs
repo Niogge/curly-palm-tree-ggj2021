@@ -23,7 +23,7 @@ public class GameMgr : MonoBehaviour
         GameEventSystem.ProgressGameEvent += ProgressGame;
         GameEventSystem.WinGameEvent += WinGame;
         GameEventSystem.LoseGameEvent += LoseGame;
-        GameState = GameProgress.Early;
+        GameState = GameProgress.Start;
         VisibilitySlider.maxValue = (float)GameProgress.LAST;
 
         List<string> messages = new List<string>();
@@ -40,7 +40,7 @@ public class GameMgr : MonoBehaviour
     {
         GameState++;
         VisibilitySlider.value = (float)( GameProgress.LAST - (GameProgress.LAST - GameState));
-        if (GameState >= GameProgress.Late)
+        if (GameState > GameProgress.Late)
         {
             GameEventSystem.WinGame();
             return;

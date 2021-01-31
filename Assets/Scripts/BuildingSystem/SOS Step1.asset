@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SOS Step1
   m_EditorClassIdentifier: 
   Requirements:
-  - ItemType: 1
+  - ItemType: 5
     Quantity: 10
     GivenQuantity: 0
