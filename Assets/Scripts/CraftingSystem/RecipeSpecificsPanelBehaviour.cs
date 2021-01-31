@@ -49,21 +49,24 @@ public class RecipeSpecificsPanelBehaviour : MonoBehaviour
     }
     public void CraftButtonClick()
     {
-        if(SelectedRecipe.RecipeName == "Hat")
-        {
-            hatCrafting();
-            return;
-        }
         for (int i = 0; i < SelectedRecipe.Requirements.Length; i++)
         {
             GameEventSystem.CraftItem(SelectedRecipe.Requirements[i].ItemType.ToString(), SelectedRecipe.Requirements[i].NeededQuantity);
         }
         Refresh(SelectedRecipe);
 
+        if (SelectedRecipe.RecipeName == "Hat")
+        {
+            HatManager.Instance.AddHat();
+            return;
+        }
+
         GameObject go = Instantiate(SelectedRecipe.Prefab);
         Pickable pickable = go.GetComponent<Pickable>();
         pickable.CreateItem();
         pickable.Item.Quantity = SelectedRecipe.OutputQuantity;
+
+        
 
         GameEventSystem.AddInventoryItem(pickable, SelectedRecipe.OutputQuantity);
     }

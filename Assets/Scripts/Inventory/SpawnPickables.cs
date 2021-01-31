@@ -21,11 +21,11 @@ public class SpawnPickables : MonoBehaviour
 
         //ESEMPIO DI COME MOSTRARE UNA SERIE DI MESSAGGI POPUP A CATENA\\
         //CAMBIANO CLICCANDO SUL BOTTONE\\
-        List<string> messages = new List<string>();
-        messages.Add("mex 1");
-        messages.Add("mex 2");
-        messages.Add("mex 3");
-        GameEventSystem.ShowDialogPopup(messages, "Got it!");
+        //List<string> messages = new List<string>();
+        //messages.Add("mex 1");
+        //messages.Add("mex 2");
+        //messages.Add("mex 3");
+        //GameEventSystem.ShowDialogPopup(messages, "Got it!");
 
         //ESEMPIO DI COME MOSTRARE UN MESSAGGIO POPUP A TEMPO\\
         //SI LEVA DA SOLO ALLO SCADERE\\

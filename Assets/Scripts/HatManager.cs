@@ -19,7 +19,7 @@ public class HatManager : MonoBehaviour
 
     public void AddHat()
     {
-        GameObject go = Instantiate(HatPrefabs[Random.Range(0,3)]);
+        GameObject go = Instantiate(HatPrefabs[Random.Range(0,HatPrefabs.Count)]);
         go.GetComponent<HatScript>().MyPivot = currentHatPivot;
         currentHatPivot = go.GetComponent<HatScript>().NextPivot;
     }

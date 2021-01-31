@@ -40,7 +40,7 @@ public class GameMgr : MonoBehaviour
     {
         GameState++;
         VisibilitySlider.value = (float)( GameProgress.LAST - (GameProgress.LAST - GameState));
-        if (GameState > GameProgress.Late)
+        if (GameState == GameProgress.LAST)
         {
             GameEventSystem.WinGame();
             return;
