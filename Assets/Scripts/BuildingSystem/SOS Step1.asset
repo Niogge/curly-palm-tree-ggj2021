@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SOS Step1
   m_EditorClassIdentifier: 
   Requirements:
-  - ItemType: 0
-    Quantity: 30
+  - ItemType: 4
+    Quantity: 5
     GivenQuantity: 0
-  - ItemType: 1
-    Quantity: 60
+  - ItemType: 5
+    Quantity: 10
     GivenQuantity: 0

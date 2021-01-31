@@ -7,7 +7,7 @@ public class Pickable : MonoBehaviour, IInteractable
     //IInteractable-----
     public bool IsInteractable { get; set; }
     public InteractableType InteractableType { get { return InteractableType.Pickable; } }
-    public string NormalInteractionHintText { get { return "Pick Up"; } }
+    public string NormalInteractionHintText { get { return "Pick Up \n" + Item.Quantity + "  " + Item.Name; } }
     public string SpecialInteractionHintText { get { return ""; } }
 
     public AnimationType NormalInteractionAnimation { get { return AnimationType.None; } }

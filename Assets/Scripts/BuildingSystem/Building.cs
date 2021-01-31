@@ -6,7 +6,7 @@ using System.Linq;
 public class Building : MonoBehaviour, IInteractable
 {
     public string NormalInteractionHintText { get { return "Build"; } }
-    public string SpecialInteractionHintText { get { return "Deposit All"; } }
+    public string SpecialInteractionHintText { get { return ""; } }
 
     public bool IsInteractable { get; set; }
 
