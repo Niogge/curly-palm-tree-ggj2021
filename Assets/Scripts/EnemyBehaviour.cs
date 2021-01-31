@@ -23,6 +23,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Animator anim;
     private NavMeshAgent agent;
     private State state;
+    private float cd;
 
     [Header("Audio")]
     public List<AudioClip> attackClips;
@@ -33,8 +34,16 @@ public class EnemyBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         src = GetComponent<AudioSource>();
+        cd = 0.1f;
     }
 
+    public void FixNavmesh()
+    {
+        if (!agent.isOnNavMesh)
+        {
+            agent.Warp(transform.position);
+        }
+    }
     private void OnEnable()
     {
         transform.position = InitialPosition;
@@ -105,7 +114,15 @@ void CheckStates()
         if (!anim.GetBool("walk"))
             anim.SetBool("walk", true);
 
-        agent.SetDestination(Player.position);
+        if (cd <= 0)
+        {
+            agent.SetDestination(Player.position);
+            cd = 0.1f;
+        }
+        else
+        {
+            cd -= Time.deltaTime;
+        }
     }
 
     public void AttackState()

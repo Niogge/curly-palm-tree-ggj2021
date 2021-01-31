@@ -76,6 +76,7 @@ public class EnemySpawnManager : MonoBehaviour
                 if (!enemies[i].activeSelf)
                 {
                     enemies[i].SetActive(true);
+                    enemies[i].GetComponent<EnemyBehaviour>().FixNavmesh();
                     break;
                 }
             }
@@ -94,6 +95,7 @@ public class EnemySpawnManager : MonoBehaviour
                 if (!enemies[i].activeSelf)
                 {
                     enemies[i].SetActive(true);
+                    enemies[i].GetComponent<EnemyBehaviour>().FixNavmesh();
                     index++;
                     if(index == 2)
                         break;
@@ -114,6 +116,8 @@ public class EnemySpawnManager : MonoBehaviour
                 if (!enemies[i].activeSelf)
                 {
                     enemies[i].SetActive(true);
+                    enemies[i].GetComponent<EnemyBehaviour>().FixNavmesh();
+
                     index++;
                     if (index == 2)
                         break;
