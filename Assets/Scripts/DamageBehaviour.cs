@@ -7,6 +7,7 @@ public class DamageBehaviour : MonoBehaviour
     public int Damage = 5;
     [HideInInspector]
     public bool CanDamage;
+    [SerializeField]ParticleSystem HitVfx;
 
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +18,8 @@ public class DamageBehaviour : MonoBehaviour
             {
                 CanDamage = false;
                 other.GetComponentInParent<LifeManager>().AddDamage(Damage);
+                HitVfx.transform.position = transform.position;
+                HitVfx.Play();
             }
         }
     }

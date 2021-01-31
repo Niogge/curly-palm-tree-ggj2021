@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d1c5b6e3ceee7344ac065d41b1e1e49, type: 2}
+  - {fileID: 2100000, guid: 8b1ad08213060aa479982991cfec7639, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1036,7 +1036,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d1c5b6e3ceee7344ac065d41b1e1e49, type: 2}
+  - {fileID: 2100000, guid: 8b1ad08213060aa479982991cfec7639, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1355,7 +1355,7 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 0}
   RotSpeed: 10
-  MinChaseDist: 1.7
+  MinChaseDist: 2.8
   MaxAttackDist: 3
   MaxDistanceToChase: 20
   InitialPosition: {x: 0, y: 0, z: 0}
