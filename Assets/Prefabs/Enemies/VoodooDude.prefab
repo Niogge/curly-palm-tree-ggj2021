@@ -1355,8 +1355,9 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 0}
   RotSpeed: 10
-  MinChaseDist: 3
-  MaxAttackDist: 6
+  MinChaseDist: 1.7
+  MaxAttackDist: 3
+  MaxDistanceToChase: 20
   InitialPosition: {x: 0, y: 0, z: 0}
   attackClips:
   - {fileID: 8300000, guid: 3eab98580bca36e478041800ceb54f2c, type: 3}

@@ -17,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float RotSpeed = 10f;
     public float MinChaseDist;
     public float MaxAttackDist;
+    public float MaxDistanceToChase;
 
     [HideInInspector]
     public Vector3 InitialPosition;
@@ -85,7 +86,7 @@ void CheckStates()
             state = State.Chase;
             return;
         }
-        else if(dist < MinChaseDist)
+        else if (dist < MinChaseDist)
         {
             state = State.Attack;
             return;
