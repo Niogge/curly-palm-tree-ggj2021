@@ -1,4 +1,6 @@
-﻿public delegate void OnTogglePauseUI(bool show);
+﻿using System.Collections.Generic;
+
+public delegate void OnTogglePauseUI(bool show);
 public delegate void OnTryInterruptPause();
 public delegate void OnDestroyInteractable(IInteractable interactable);
 public delegate void OnLongInteractionBegin();
@@ -29,6 +31,9 @@ public delegate void OnCraftItem(string itemName, int quantity);
 //progression
 public delegate void OnProgressGame();
 public delegate void OnWinGame();
+
+public delegate void OnShowFastPopup(string message, float time);
+public delegate void OnShowDialogPopup(List<string> messages, string buttonText);
 
 public class GameEventSystem
 {
@@ -68,6 +73,19 @@ public class GameEventSystem
     //progression
     public static event OnProgressGame ProgressGameEvent;
     public static event OnWinGame WinGameEvent;
+
+    public static event OnShowFastPopup ShowFastPopupEvent;
+    public static event OnShowDialogPopup ShowDialogPopupEvent;
+
+    public static void ShowFastPopup(string message, float time)
+    {
+        ShowFastPopupEvent.Invoke(message, time);
+    }
+
+    public static void ShowDialogPopup(List<string> messages, string buttonText)
+    {
+        ShowDialogPopupEvent.Invoke(messages, buttonText);
+    }
 
     public static void EquipItem(string itemName)
     {

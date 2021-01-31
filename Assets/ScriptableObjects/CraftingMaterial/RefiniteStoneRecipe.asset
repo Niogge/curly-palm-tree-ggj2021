@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RefiniteStoneRecipe
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2844490436081385268, guid: 0342d83fdb4759340baa3c2ab5728bd4, type: 3}
-  RecipeName: RefiniteRocks
+  RecipeName: RefiniteStone
   OutputQuantity: 1
   Acquired: 1
   Requirements:

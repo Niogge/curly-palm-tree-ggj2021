@@ -13,7 +13,6 @@ public class DamageBehaviour : MonoBehaviour
     {
         if (CanDamage)
         {
-            Debug.Log(gameObject.tag + " sta triggerando: " + other.tag);
             if (gameObject.CompareTag("Enemy") && other.CompareTag("DamageCollider") || gameObject.CompareTag("Player") && other.CompareTag("DamageCollider_enemy"))
             {
                 CanDamage = false;

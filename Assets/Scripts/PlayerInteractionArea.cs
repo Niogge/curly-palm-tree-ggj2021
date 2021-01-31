@@ -49,7 +49,6 @@ public class PlayerInteractionArea : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Interactable"))
             {
-                Debug.Log("Out");
                 IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
                 if (NearestInteractable != null)
                 {
