@@ -100,6 +100,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(pressPoint=0.1,behavior=2)"
+                },
+                {
+                    "name": "Craft",
+                    "type": "Button",
+                    "id": "88a13207-8980-4218-8f89-182c5fa4b59a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(pressPoint=0.1,behavior=2)"
                 }
             ],
             "bindings": [
@@ -397,6 +405,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "SpecialInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6aae09a-43f7-4b04-b062-ea8cae6e3368",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Craft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

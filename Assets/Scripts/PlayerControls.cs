@@ -113,6 +113,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(pressPoint=0.1,behavior=2)""
+                },
+                {
+                    ""name"": ""Craft"",
+                    ""type"": ""Button"",
+                    ""id"": ""88a13207-8980-4218-8f89-182c5fa4b59a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(pressPoint=0.1,behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -412,6 +420,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""SpecialInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6aae09a-43f7-4b04-b062-ea8cae6e3368"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Craft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -460,6 +479,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Lean = m_GamePlay.FindAction("Lean", throwIfNotFound: true);
         m_GamePlay_Cover = m_GamePlay.FindAction("Cover", throwIfNotFound: true);
+        m_GamePlay_Craft = m_GamePlay.FindAction("Craft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -521,6 +541,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Lean;
     private readonly InputAction m_GamePlay_Cover;
+    private readonly InputAction m_GamePlay_Craft;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
@@ -537,6 +558,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Lean => m_Wrapper.m_GamePlay_Lean;
         public InputAction @Cover => m_Wrapper.m_GamePlay_Cover;
+        public InputAction @Craft => m_Wrapper.m_GamePlay_Craft;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -582,6 +604,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Cover.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCover;
                 @Cover.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCover;
                 @Cover.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCover;
+                @Craft.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
+                @Craft.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
+                @Craft.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -622,6 +647,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Cover.started += instance.OnCover;
                 @Cover.performed += instance.OnCover;
                 @Cover.canceled += instance.OnCover;
+                @Craft.started += instance.OnCraft;
+                @Craft.performed += instance.OnCraft;
+                @Craft.canceled += instance.OnCraft;
             }
         }
     }
@@ -658,5 +686,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLean(InputAction.CallbackContext context);
         void OnCover(InputAction.CallbackContext context);
+        void OnCraft(InputAction.CallbackContext context);
     }
 }

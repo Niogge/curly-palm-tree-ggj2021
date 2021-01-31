@@ -9,7 +9,6 @@ public class CharacterController : MonoBehaviour
     private CameraBehaviour cameraTarget;
     private PlayerInteractionArea playerInteractionArea;
     private AnimatorHandler animatorHandler;
-
     private void Awake()
     {
         animatorHandler = GetComponent<AnimatorHandler>();
@@ -24,6 +23,7 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
+
         //player is in the pause menu
         if (player.IsPaused) //<- check inputs in the pause menu
         {
@@ -34,12 +34,16 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
-        if(player.IsCrafting)
-        {
-            //close crafting menu
-            if(inputHandler.interruptButtonPressed)
-                GameEventSystem.ToggleCraftingUI(false);
-        }
+        //if (player.IsCrafting)
+        //{
+        //    //close crafting menu
+        //    if (inputHandler.craftButtonPressed)
+        //    {
+
+        //            player.IsCrafting = false;
+        //            GameEventSystem.ToggleCraftingUI(false);
+        //    }
+        //}
 
         //player is playing
         if (!player.IsInteracting) //<- if the player is not blocked interacting with something
@@ -83,8 +87,13 @@ public class CharacterController : MonoBehaviour
                         playerInteractionArea.NearestInteractable.StartNormalInteraction();
                     }
                 }
-                else //if pressing the interaction key without an interactable nearby
-                    GameEventSystem.ToggleCraftingUI(true); //show crafting menu
+
+            }
+
+            if (inputHandler.craftButtonPressed)
+            {
+                player.IsCrafting = true;
+                GameEventSystem.ToggleCraftingUI(true); //show crafting menu
             }
             if (inputHandler.specialInteractButtonPressed)
             {
@@ -114,5 +123,9 @@ public class CharacterController : MonoBehaviour
         {
             animatorHandler.SetAnimation(AnimationType.Attack);
         }
+
+
+
+   
     }
 }

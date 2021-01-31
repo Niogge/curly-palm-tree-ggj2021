@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour
     public bool specialInteractButtonPressed { get { return playerControls.GamePlay.SpecialInteraction.triggered; } }
     public bool interruptButtonPressed { get { return playerControls.GamePlay.Interrupt.triggered; } }
     public bool pauseButtonPressed { get { return playerControls.GamePlay.Pause.triggered; } }
-
+    public bool craftButtonPressed { get { return playerControls.GamePlay.Craft.triggered; } }
     public ControlScheme currentControlScheme { get; private set; }
     public bool attackButtonPressed { get { return playerControls.GamePlay.Attack.triggered; } }
     //public bool coverButtonPressed { get; private set; }
@@ -34,6 +34,7 @@ public class InputHandler : MonoBehaviour
         return playerControls;
     }
 
+  
     private void SetPlayerControls()
     {
         playerControls.GamePlay.Enable();
