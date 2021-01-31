@@ -14,6 +14,9 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public GameObject EquippedItem;
     public GameObject[] EquippableItems;
 
+    [Header("Audio")]
+    public AudioClip pickSound;
+    AudioSource src;
     private void Awake()
     {
         itemSlots = new List<ItemSlot>();
@@ -30,6 +33,9 @@ public class Inventory : MonoBehaviour
         GameEventSystem.DropInventoryItemEvent += DropItem;
         GameEventSystem.EquipItemEvent += EquipItem;
         GameEventSystem.UnequipItemEvent += UnequipItem;
+
+        src = GetComponent<AudioSource>();
+
     }
 
     private void Start()
@@ -83,6 +89,7 @@ public class Inventory : MonoBehaviour
                     GameEventSystem.DestroyInteractable(pickable);
                     pickable.ObjectPicked();
                     Destroy(pickable.gameObject);
+                    src.PlayOneShot(pickSound, 0.5f);
                 }
 
                 return;
@@ -98,6 +105,7 @@ public class Inventory : MonoBehaviour
             GameEventSystem.DestroyInteractable(pickable);
             pickable.ObjectPicked();
             Destroy(pickable.gameObject);
+            src.PlayOneShot(pickSound, 0.5f);
 
         }
         else

@@ -21,9 +21,14 @@ public class Pickable : MonoBehaviour, IInteractable
     [HideInInspector]
     public ItemSpawner Spawner;
 
+
+
+
+
     private void OnEnable()
     {
         IsInteractable = true;
+        
     }
 
     private void OnDisable()
@@ -45,6 +50,8 @@ public class Pickable : MonoBehaviour, IInteractable
     //IInteractable-----
     public void StartNormalInteraction()
     {
+  
+        
         GameEventSystem.AddInventoryItem(this, Item.Quantity);
         //GameEventSystem.DestroyInteractable(this);
         //Destroy(gameObject); //<- se usiamo il pooling agire qui al posto di Destroy!

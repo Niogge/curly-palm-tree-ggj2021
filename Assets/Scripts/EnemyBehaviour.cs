@@ -24,10 +24,15 @@ public class EnemyBehaviour : MonoBehaviour
     private NavMeshAgent agent;
     private State state;
 
+    [Header("Audio")]
+    public List<AudioClip> attackClips;
+    AudioSource src;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        src = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -53,6 +58,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void BeginSwing()
     {
+        src.PlayOneShot(attackClips[Random.Range(0, attackClips.Count)], 0.5f);
         Weapon.CanDamage = true;
     }
 

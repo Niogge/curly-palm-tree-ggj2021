@@ -16,12 +16,16 @@ public class Player : MonoBehaviour
     public bool IsInteracting;
     public bool IsCrafting;
     public int StartingInventorySlots;
+    [Header("Audio")]
+    public List<AudioClip> attackClips;
+    AudioSource src;
 
     private void Awake()
     {
         GameEventSystem.TogglePauseUIEvent += (bool paused) => IsPaused = paused;
         GameEventSystem.ToggleCraftingUIEvent += ToggleCraft;
         Inventory.MaxSlots = StartingInventorySlots;
+        src = GetComponent<AudioSource>();
     }
 
     private void ToggleCraft(bool status)
@@ -35,6 +39,7 @@ public class Player : MonoBehaviour
 
     public void BeginSwing()
     {
+        src.PlayOneShot(attackClips[Random.Range(0, attackClips.Count)], 0.5f);
         Weapon.CanDamage = true;
     }
 
