@@ -34,6 +34,7 @@ public delegate void OnWinGame();
 
 public delegate void OnShowFastPopup(string message, float time);
 public delegate void OnShowDialogPopup(List<string> messages, string buttonText);
+public delegate void OnLoseGame();
 
 public class GameEventSystem
 {
@@ -73,6 +74,7 @@ public class GameEventSystem
     //progression
     public static event OnProgressGame ProgressGameEvent;
     public static event OnWinGame WinGameEvent;
+    public static event OnLoseGame LoseGameEvent;
 
     public static event OnShowFastPopup ShowFastPopupEvent;
     public static event OnShowDialogPopup ShowDialogPopupEvent;
@@ -251,5 +253,10 @@ public class GameEventSystem
     public static void WinGame()
     {
         WinGameEvent.Invoke();
+    }
+
+    public static void LoseGame()
+    {
+        LoseGameEvent.Invoke();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public enum GameProgress
 {
     Start = 0,
@@ -21,6 +22,7 @@ public class GameMgr : MonoBehaviour
     {
         GameEventSystem.ProgressGameEvent += ProgressGame;
         GameEventSystem.WinGameEvent += WinGame;
+        GameEventSystem.LoseGameEvent += LoseGame;
         GameState = GameProgress.Early;
         VisibilitySlider.maxValue = (float)GameProgress.LAST;
 
@@ -38,13 +40,16 @@ public class GameMgr : MonoBehaviour
     {
         GameState++;
         VisibilitySlider.value = (float)( GameProgress.LAST - (GameProgress.LAST - GameState));
-        if (GameState > GameProgress.Late)
+        if (GameState >= GameProgress.Late)
         {
             GameEventSystem.WinGame();
             return;
         }
     }
-
+    void LoseGame()
+    {
+        SceneManager.LoadScene(2);
+    }
     void WinGame()
     {
         Debug.Log("u win");

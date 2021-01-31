@@ -11,7 +11,9 @@ public class LifeManager : MonoBehaviour
 {
     public int Life = 50;
     public Slider LifeBar;
+    public GameObject ImageDie;
 
+    float counter = 5;
     [SerializeField]
     Owner owner;
 
@@ -21,6 +23,7 @@ public class LifeManager : MonoBehaviour
     private void Start()
     {
         AcctuallyLife = Life;
+        counter = 5;
         if (LifeBar != null)
         {
             LifeBar.maxValue = Life;
@@ -52,6 +55,9 @@ public class LifeManager : MonoBehaviour
         switch (owner)
         {
             case Owner.Player:
+                ImageDie.SetActive(true);
+
+               
 
                 break;
 

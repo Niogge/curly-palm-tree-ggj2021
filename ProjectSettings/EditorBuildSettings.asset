@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5b2369ccce33e6b4ab42b747c7f0fec2
   - enabled: 1
+    path: Assets/Scenes/BEST SCENA EVER.unity
+    guid: 021bf7bf6c2f4714aabd3c8cd1e41460
+  - enabled: 1
+    path: Assets/Scenes/Credit Scene.unity
+    guid: 19d0c16171bff244ab5c846f95ac3ebc
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: f4c0c0e0167e1ff4a9fd9bc07ea195c2
   m_configObjects: {}
