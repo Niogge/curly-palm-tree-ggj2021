@@ -121,6 +121,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(pressPoint=0.1,behavior=2)""
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""84636690-2368-4aa4-99b0-dab46c8735a6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -431,6 +439,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Craft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d83c379-c62a-425f-9392-b209bc69df3f"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -480,6 +499,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_GamePlay_Lean = m_GamePlay.FindAction("Lean", throwIfNotFound: true);
         m_GamePlay_Cover = m_GamePlay.FindAction("Cover", throwIfNotFound: true);
         m_GamePlay_Craft = m_GamePlay.FindAction("Craft", throwIfNotFound: true);
+        m_GamePlay_MousePosition = m_GamePlay.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -542,6 +562,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Lean;
     private readonly InputAction m_GamePlay_Cover;
     private readonly InputAction m_GamePlay_Craft;
+    private readonly InputAction m_GamePlay_MousePosition;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
@@ -559,6 +580,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Lean => m_Wrapper.m_GamePlay_Lean;
         public InputAction @Cover => m_Wrapper.m_GamePlay_Cover;
         public InputAction @Craft => m_Wrapper.m_GamePlay_Craft;
+        public InputAction @MousePosition => m_Wrapper.m_GamePlay_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -607,6 +629,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Craft.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
                 @Craft.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
                 @Craft.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCraft;
+                @MousePosition.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -650,6 +675,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Craft.started += instance.OnCraft;
                 @Craft.performed += instance.OnCraft;
                 @Craft.canceled += instance.OnCraft;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -687,5 +715,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnLean(InputAction.CallbackContext context);
         void OnCover(InputAction.CallbackContext context);
         void OnCraft(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

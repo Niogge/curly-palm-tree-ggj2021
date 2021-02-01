@@ -22,10 +22,21 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        GameEventSystem.TogglePauseUIEvent += (bool paused) => IsPaused = paused;
+        GameEventSystem.TogglePauseUIEvent += TogglePause;
         GameEventSystem.ToggleCraftingUIEvent += ToggleCraft;
         Inventory.MaxSlots = StartingInventorySlots;
         src = GetComponent<AudioSource>();
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.TogglePauseUIEvent -= TogglePause;
+        GameEventSystem.ToggleCraftingUIEvent -= ToggleCraft;
+    }
+
+    private void TogglePause(bool status)
+    {
+        IsPaused = status;
     }
 
     private void ToggleCraft(bool status)

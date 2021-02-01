@@ -19,6 +19,15 @@ public class InteractionHint : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.ShowInteractionHintEvent -= Show;
+        GameEventSystem.RefreshInteractionHintEvent -= Refresh;
+        GameEventSystem.HideInteractionHintEvent -= Hide;
+        GameEventSystem.BeginLongInteractionEvent -= Hide;
+        GameEventSystem.EndLongInteractionEvent -= Show;
+    }
+
     private void Update()
     {
         //orienta continuamente l'oggetto verso la telecamera quando è attivo

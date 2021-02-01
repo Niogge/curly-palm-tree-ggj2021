@@ -21,6 +21,16 @@ public class InventoryUIManager : MonoBehaviour
         UIInventorySlots = new List<UIInventorySlot>();
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.ChangeInventoryMaxSlotsEvent -= ChangeMaxSlots;
+        GameEventSystem.AddInventorySlotEvent -= AddNewSlot;
+        GameEventSystem.RemoveInventorySlotEvent -= RemoveSlot;
+        GameEventSystem.ChangeInventorySlotQuantityEvent -= SetQuantity;
+        GameEventSystem.CraftItemEvent -= ChangeQuantity;
+        GameEventSystem.CraftHatEvent -= ChangeQuantity;
+    }
+
     public void ChangeQuantity(string itemName, int quantity)
     {
         for (int i = 0; i < UIInventorySlots.Count; i++)

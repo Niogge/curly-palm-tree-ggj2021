@@ -15,6 +15,11 @@ public class CraftingPanelBehaviour : MonoBehaviour
         GameEventSystem.LoadAllRecipesEvent += LoadAllRecipes;
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.LoadAllRecipesEvent -= LoadAllRecipes;
+    }
+
     private void OnEnable()
     {
         //build recipes items

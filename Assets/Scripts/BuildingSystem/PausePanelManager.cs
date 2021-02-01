@@ -18,6 +18,11 @@ public class PausePanelManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.TryInterruptPauseEvent -= Back;
+    }
+
     private void OnEnable()
     {
         PauseMainPanel.SetActive(true);

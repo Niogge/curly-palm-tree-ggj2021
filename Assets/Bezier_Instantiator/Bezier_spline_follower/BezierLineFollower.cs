@@ -10,11 +10,18 @@ public class BezierLineFollower : MonoBehaviour
     public AnimationCurve TimeToReachCurve;
     public bool Follow;
     float currT;
+
+    private void OnDestroy()
+    {
+        GameEventSystem.WinGameEvent -= WinGame;
+    }
+
     private void Start()
     {
         currT = 0;
         GameEventSystem.WinGameEvent += WinGame;
     }
+
     void Update()
     {
 

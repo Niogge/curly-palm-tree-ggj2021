@@ -26,6 +26,16 @@ public class GameUIManager : MonoBehaviour
         GameEventSystem.ShowDialogPopupEvent += ShowPopup;
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.TogglePauseUIEvent -= TogglePausePanel;
+        GameEventSystem.ToggleBuildingUIEvent -= ToggleBuildingPanel;
+        GameEventSystem.ToggleCraftingUIEvent -= ToggleCraftingPanel;
+
+        GameEventSystem.ShowFastPopupEvent -= ShowPopup;
+        GameEventSystem.ShowDialogPopupEvent -= ShowPopup;
+    }
+
     private void ToggleBuildingPanel(bool activeStatus, Building building)
     {
         BuildingPanel.GetComponent<BuildingPanelBehaviour>().CurrentBuilding = building;

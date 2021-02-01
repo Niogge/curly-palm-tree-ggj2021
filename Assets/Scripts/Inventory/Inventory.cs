@@ -38,6 +38,17 @@ public class Inventory : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.AddInventoryItemEvent -= AddItem;
+        GameEventSystem.TryGiveMaterialToBuildEvent -= GiveMaterial;
+        GameEventSystem.AcquireCraftingRecipeEvent -= UnlockRecipe;
+        GameEventSystem.CraftItemEvent -= CraftItem;
+        GameEventSystem.DropInventoryItemEvent -= DropItem;
+        GameEventSystem.EquipItemEvent -= EquipItem;
+        GameEventSystem.UnequipItemEvent -= UnequipItem;
+    }
+
     private void Start()
     {
         GameEventSystem.LoadAllRecipes(ref Recipes);

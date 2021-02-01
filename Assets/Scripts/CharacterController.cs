@@ -119,13 +119,15 @@ public class CharacterController : MonoBehaviour
                 playerInteractionArea.NearestInteractable.InterruptInteraction();
             }
         }
+
         if (inputHandler.attackButtonPressed)
         {
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(inputHandler.mousePosition.x, inputHandler.mousePosition.y));
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, 100);
+            Vector3 direction = (hit.point - transform.position).normalized;
+            transform.forward = new Vector3(direction.x, 0, direction.z);
             animatorHandler.SetAnimation(AnimationType.Attack);
         }
-
-
-
-   
     }
 }

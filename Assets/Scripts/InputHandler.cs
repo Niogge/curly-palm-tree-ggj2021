@@ -23,6 +23,9 @@ public class InputHandler : MonoBehaviour
     public bool craftButtonPressed { get { return playerControls.GamePlay.Craft.triggered; } }
     public ControlScheme currentControlScheme { get; private set; }
     public bool attackButtonPressed { get { return playerControls.GamePlay.Attack.triggered; } }
+
+    public Vector2 mousePosition { get { return playerControls.GamePlay.MousePosition.ReadValue<Vector2>(); } }
+
     //public bool coverButtonPressed { get; private set; }
     //public bool dodgeButtonPressed { get { return playerControls.GamePlay.Dodge.triggered; } }
     //public bool jumpButtonPressed { get { return playerControls.GamePlay.Jump.triggered; } }

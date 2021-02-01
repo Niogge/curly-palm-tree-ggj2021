@@ -13,9 +13,26 @@ public class PlayerInteractionArea : MonoBehaviour
         //if i am interacting, call stop interaction on that interactable. It will automatically trigger the right stop interaction event.
         player = GetComponentInParent<Player>();
 
-        GameEventSystem.BeginLongInteractionEvent += () => player.IsInteracting = true;
-        GameEventSystem.EndLongInteractionEvent += _ => player.IsInteracting = false;
+        GameEventSystem.BeginLongInteractionEvent += BeginInteraction;
+        GameEventSystem.EndLongInteractionEvent += EndInteraction;
         GameEventSystem.DestroyInteractableEvent += ClearInteractable;
+    }
+
+    private void BeginInteraction()
+    {
+        player.IsInteracting = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.BeginLongInteractionEvent -= BeginInteraction;
+        GameEventSystem.EndLongInteractionEvent -= EndInteraction;
+        GameEventSystem.DestroyInteractableEvent -= ClearInteractable;
+    }
+
+    private void EndInteraction(IInteractable interactable)
+    {
+        player.IsInteracting = false;
     }
 
     private void Update()

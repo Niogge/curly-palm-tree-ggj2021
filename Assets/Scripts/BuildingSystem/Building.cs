@@ -26,6 +26,11 @@ public class Building : MonoBehaviour, IInteractable
         GameEventSystem.ActivateBuildingSpotEvent += ActivateBuildingSpot;
     }
 
+    private void OnDestroy()
+    {
+        GameEventSystem.ActivateBuildingSpotEvent -= ActivateBuildingSpot;
+    }
+
     private void Start()
     {
         GameEventSystem.ActivateBuildingSpot(this); //test only
