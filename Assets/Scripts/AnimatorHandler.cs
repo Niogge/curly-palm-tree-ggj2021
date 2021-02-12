@@ -44,4 +44,9 @@ public class AnimatorHandler : MonoBehaviour
         if (DebugAnimation)
             Debug.Log("Current Animation on: " + gameObject.name + " is " + currentAnimation.ToString());
     }
+
+    public bool GetAnimatorBool(string name)
+    {
+        return animator.GetBool(name);
+    }
 }

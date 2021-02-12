@@ -59,12 +59,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(Player);
+        Vector3 dir = agent.velocity;
+        dir.y = 0;
+        Quaternion rot  = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 10f);
 
         CheckStates();
         DumpFSM();
     }
-
 
     public void BeginSwing()
     {
@@ -81,10 +83,6 @@ public class EnemyBehaviour : MonoBehaviour
 void CheckStates()
     {
         float dist = Vector3.Distance(transform.position, Player.position);
-        if(dist > MaxDistanceToChase)
-        {
-            state = State.NONE;
-        }
         if (dist > MaxAttackDist)
         {
             state = State.Chase;
@@ -140,8 +138,6 @@ void CheckStates()
 
     public void AttackState()
     {
-        if (!agent.isStopped)
-            agent.isStopped = true;
         if (anim.GetBool("walk"))
             anim.SetBool("walk", false);
         if (!anim.GetBool("attack"))

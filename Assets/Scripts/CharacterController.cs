@@ -120,7 +120,7 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        if (inputHandler.attackButtonPressed)
+        if (inputHandler.attackButtonPressed && !animatorHandler.GetAnimatorBool("walk"))
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(inputHandler.mousePosition.x, inputHandler.mousePosition.y));
             RaycastHit hit;
