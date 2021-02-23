@@ -26,6 +26,8 @@ public class EnemyBehaviour : MonoBehaviour
     private State state;
     private float cd;
 
+    private float cdCheckPlayerPosition;
+
     [Header("Audio")]
     public List<AudioClip> attackClips;
     AudioSource src;
@@ -36,6 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         src = GetComponent<AudioSource>();
         cd = 0.1f;
+        cdCheckPlayerPosition = 1f;
     }
 
     public void FixNavmesh()
@@ -67,7 +70,14 @@ public class EnemyBehaviour : MonoBehaviour
         CheckStates();
         DumpFSM();
     }
+    void StartChase()
+    {
+        cdCheckPlayerPosition -= Time.deltaTime;
+        if(cdCheckPlayerPosition <= 0)
+        {
 
+        }
+    }
     public void BeginSwing()
     {
         src.PlayOneShot(attackClips[Random.Range(0, attackClips.Count)], 0.5f);
